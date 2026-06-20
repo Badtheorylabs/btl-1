@@ -1,0 +1,9 @@
+{
+  "name": "btl1",
+  "kind": "messages",
+  "data_path_env": "BTL_BTL1_PATH",
+  "default_path": "data/final/eval.jsonl",
+  "prompt_selectors": [],
+  "expected_selectors": [],
+  "allow_refusal": true
+}

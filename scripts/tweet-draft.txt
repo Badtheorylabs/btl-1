@@ -1,0 +1,36 @@
+=== Thread Idea: Training Progress ===
+
+Tweet 1:
+Training Qwen 2.5 Coder 7B with a compression-first objective.
+3-loss pipeline: SFT → DPO → Contrastive.
+Goal: an agentic coder that produces concise, correct tool calls.
+Free T4 Colab, $1.09 total spent on data gen.
+
+Tweet 2:
+Dataset: 15K rows of real API traces + Magicoder open-source solutions.
+Verbose (good) vs negative (deliberately wrong counterfactuals).
+Training: compressed solutions should beat both uncompressed and wrong ones.
+
+Tweet 3:
+CRR = Compression Ratio Ratio.
+Transfer accuracy (depth 3-4) / in-distribution accuracy (depth 1-2).
+Measures whether the model compresses tool chains vs just memorizing.
+
+=== Thread Idea: Release ===
+
+Tweet 1:
+BTL-1 is live.
+Fine-tuned Qwen 2.5 Coder 7B for tool orchestration.
+10 tools, multi-step chains, compression-first training.
+Weights + eval dataset on HF.
+
+Tweet 2:
+The problem: frontier models produce verbose, redundant tool calls.
+BTL-1 trains to prefer concise solutions — SFT on verbose, DPO against verbose, contrastive against negatives.
+CRR > 1.0 means it compresses better than it memorizes.
+
+Tweet 3:
+Built for free on Colab T4. Dataset from real API traces + Magicoder.
+No VC, no paywalls.
+Weights: huggingface.co/badtheorylabs/btl-1
+Code: github.com/badtheorylabs/btl-1

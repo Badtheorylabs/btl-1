@@ -1,0 +1,258 @@
+  task 36 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 36 variant minimal with GPT-4o mini
+  task 4 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 4 variant minimal with GPT-4o mini
+  task 37 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 37 variant minimal with GPT-4o mini
+  task 39 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 39 variant minimal with GPT-4o mini
+  task 2 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 2 variant minimal with GPT-4o mini
+  task 64 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 64 variant minimal with GPT-4o mini
+  task 10 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 10 variant minimal with GPT-4o mini
+  task 7 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 7 variant minimal with GPT-4o mini
+  task 51 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 51 variant minimal with GPT-4o mini
+  task 13 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 13 variant minimal with GPT-4o mini
+  task 90 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 90 variant minimal with GPT-4o mini
+  task 65 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 65 variant minimal with GPT-4o mini
+  task 58 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 58 variant minimal with GPT-4o mini
+  task 91 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 91 variant minimal with GPT-4o mini
+  task 44 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 44 variant minimal with GPT-4o mini
+  task 41 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 41 variant minimal with GPT-4o mini
+  task 31 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 31 variant minimal with GPT-4o mini
+  task 6 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 6 variant minimal with GPT-4o mini
+  task 85 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 85 variant minimal with GPT-4o mini
+  task 117 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 117 variant minimal with GPT-4o mini
+  task 99 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 99 variant minimal with GPT-4o mini
+  task 102 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 102 variant minimal with GPT-4o mini
+  task 21 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 21 variant minimal with GPT-4o mini
+  task 96 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 96 variant minimal with GPT-4o mini
+  task 28 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 28 variant minimal with GPT-4o mini
+  task 126 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 126 variant minimal with GPT-4o mini
+  task 71 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 71 variant minimal with GPT-4o mini
+  task 112 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 112 variant minimal with GPT-4o mini
+  task 24 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 24 variant minimal with GPT-4o mini
+  task 61 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 61 variant minimal with GPT-4o mini
+  task 40 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 40 variant minimal with GPT-4o mini
+  task 23 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 23 variant minimal with GPT-4o mini
+  task 29 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 29 variant minimal with GPT-4o mini
+  task 110 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 110 variant minimal with GPT-4o mini
+  task 5 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 5 variant minimal with GPT-4o mini
+  task 46 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 46 variant minimal with GPT-4o mini
+  task 16 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 16 variant minimal with GPT-4o mini
+  task 52 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 52 variant minimal with GPT-4o mini
+  task 106 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 106 variant minimal with GPT-4o mini
+  task 69 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 69 variant minimal with GPT-4o mini
+  task 47 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 47 variant minimal with GPT-4o mini
+  task 86 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 86 variant minimal with GPT-4o mini
+  task 55 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 55 variant minimal with GPT-4o mini
+  task 95 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 95 variant minimal with GPT-4o mini
+  task 50 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 50 variant minimal with GPT-4o mini
+  task 103 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 103 variant minimal with GPT-4o mini
+  task 84 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 84 variant minimal with GPT-4o mini
+  task 98 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 98 variant minimal with GPT-4o mini
+  task 123 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 123 variant minimal with GPT-4o mini
+  task 35 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 35 variant minimal with GPT-4o mini
+  task 63 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 63 variant minimal with GPT-4o mini
+  task 1 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 1 variant minimal with GPT-4o mini
+  task 43 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 43 variant minimal with GPT-4o mini
+  task 74 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 74 variant minimal with GPT-4o mini
+  task 38 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 38 variant minimal with GPT-4o mini
+  task 81 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 81 variant minimal with GPT-4o mini
+  task 75 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 75 variant minimal with GPT-4o mini
+  task 101 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 101 variant minimal with GPT-4o mini
+  task 53 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 53 variant minimal with GPT-4o mini
+  task 92 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 92 variant minimal with GPT-4o mini
+  task 108 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 108 variant minimal with GPT-4o mini
+  task 88 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 88 variant minimal with GPT-4o mini
+  task 120 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 120 variant minimal with GPT-4o mini
+  task 118 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 118 variant minimal with GPT-4o mini
+  task 119 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 119 variant minimal with GPT-4o mini
+  task 89 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 89 variant minimal with GPT-4o mini
+  task 8 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 8 variant minimal with GPT-4o mini
+  task 82 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 82 variant minimal with GPT-4o mini
+  task 67 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 67 variant minimal with GPT-4o mini
+  task 59 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 59 variant minimal with GPT-4o mini
+  task 17 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 17 variant minimal with GPT-4o mini
+  task 49 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 49 variant minimal with GPT-4o mini
+  task 87 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 87 variant minimal with GPT-4o mini
+  task 127 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 127 variant minimal with GPT-4o mini
+  task 97 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 97 variant minimal with GPT-4o mini
+  task 76 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 76 variant minimal with GPT-4o mini
+  task 11 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 11 variant minimal with GPT-4o mini
+  task 48 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 48 variant minimal with GPT-4o mini
+  task 9 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 9 variant minimal with GPT-4o mini
+  task 22 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 22 variant minimal with GPT-4o mini
+  task 12 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 12 variant minimal with GPT-4o mini
+  task 125 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 125 variant minimal with GPT-4o mini
+  task 83 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 83 variant minimal with GPT-4o mini
+  task 100 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 100 variant minimal with GPT-4o mini
+  task 26 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 26 variant minimal with GPT-4o mini
+  task 56 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 56 variant minimal with GPT-4o mini
+  task 70 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 70 variant minimal with GPT-4o mini
+  task 73 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 73 variant minimal with GPT-4o mini
+  task 107 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 107 variant minimal with GPT-4o mini
+  task 18 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 18 variant minimal with GPT-4o mini
+  task 79 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 79 variant minimal with GPT-4o mini
+  task 45 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 45 variant minimal with GPT-4o mini
+  task 15 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 15 variant minimal with GPT-4o mini
+  task 20 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 20 variant minimal with GPT-4o mini
+  task 105 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 105 variant minimal with GPT-4o mini
+  task 104 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 104 variant minimal with GPT-4o mini
+  task 34 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 34 variant minimal with GPT-4o mini
+  task 93 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 93 variant minimal with GPT-4o mini
+  task 60 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 60 variant minimal with GPT-4o mini
+  task 14 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 14 variant minimal with GPT-4o mini
+  task 54 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 54 variant minimal with GPT-4o mini
+  task 72 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 72 variant minimal with GPT-4o mini
+  task 62 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 62 variant minimal with GPT-4o mini
+  task 42 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 42 variant minimal with GPT-4o mini
+  task 77 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 77 variant minimal with GPT-4o mini
+  task 94 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 94 variant minimal with GPT-4o mini
+  task 33 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 33 variant minimal with GPT-4o mini
+  task 113 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 113 variant minimal with GPT-4o mini
+  task 3 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 3 variant minimal with GPT-4o mini
+  task 78 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 78 variant minimal with GPT-4o mini
+  task 128 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 128 variant minimal with GPT-4o mini
+  task 66 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 66 variant minimal with GPT-4o mini
+  task 124 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 124 variant minimal with GPT-4o mini
+  task 115 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 115 variant minimal with GPT-4o mini
+  task 80 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 80 variant minimal with GPT-4o mini
+  task 111 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 111 variant minimal with GPT-4o mini
+  task 114 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 114 variant minimal with GPT-4o mini
+  task 121 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 121 variant minimal with GPT-4o mini
+  task 27 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 27 variant minimal with GPT-4o mini
+  task 57 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 57 variant minimal with GPT-4o mini
+  task 30 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 30 variant minimal with GPT-4o mini
+  task 68 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 68 variant minimal with GPT-4o mini
+  task 109 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 109 variant minimal with GPT-4o mini
+  task 25 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 25 variant minimal with GPT-4o mini
+  task 122 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 122 variant minimal with GPT-4o mini
+  retrying minimal after 667ms (attempt 1/5)
+  retrying minimal after 678ms (attempt 1/5)
+  task 32 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 32 variant minimal with GPT-4o mini
+  task 19 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 19 variant minimal with GPT-4o mini
+  task 116 variant minimal via deepseek failed: API error 401: {"error":{"message":"Authentication Fails, Your api key: ****83b8 is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+  DeepSeek auth failed, retrying task 116 variant minimal with GPT-4o mini

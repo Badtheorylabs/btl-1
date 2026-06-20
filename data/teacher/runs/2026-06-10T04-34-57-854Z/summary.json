@@ -1,0 +1,9 @@
+{
+  "manifest": "C:\\Users\\pc\\Downloads\\btl\\btl-1\\data\\teacher\\manifest.jsonl",
+  "base_url": "https://api.deepseek.com",
+  "model": "deepseek-v4-pro",
+  "requested": 2,
+  "completed": 2,
+  "failed": 0,
+  "raw_rows": 2
+}

@@ -1,0 +1,13 @@
+Loading and expanding specs...
+  4179 total tasks (~12537 rows)
+  depth 0: 93 tasks
+  depth 1: 2000 tasks
+  depth 2: 2000 tasks
+  depth 3: 83 tasks
+  depth 4: 3 tasks
+
+Generating real traces via DeepSeek V4 Flash...
+  concurrency=32, max_tokens=2048
+  50/4179 tasks done, running cost: $0.0000, rows: 0/150, incomplete responses: 0, failed calls: 180
+  100/4179 tasks done, running cost: $0.0000, rows: 0/300, incomplete responses: 0, failed calls: 354
+  150/4179 tasks done, running cost: $0.0000, rows: 0/450, incomplete responses: 0, failed calls: 466

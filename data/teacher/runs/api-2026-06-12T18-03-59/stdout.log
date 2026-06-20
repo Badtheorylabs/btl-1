@@ -1,0 +1,29 @@
+Loading and expanding specs...
+  4179 total tasks (~12537 rows)
+  depth 0: 93 tasks
+  depth 1: 2000 tasks
+  depth 2: 2000 tasks
+  depth 3: 83 tasks
+  depth 4: 3 tasks
+
+Generating real traces via DeepSeek V4 Flash...
+  concurrency=32, max_tokens=1024
+  50/4179 tasks done, running cost: $0.0139, rows: 62
+  100/4179 tasks done, running cost: $0.0303, rows: 119
+  150/4179 tasks done, running cost: $0.0469, rows: 202
+  200/4179 tasks done, running cost: $0.0592, rows: 268
+  250/4179 tasks done, running cost: $0.0737, rows: 337
+  300/4179 tasks done, running cost: $0.0879, rows: 386
+  350/4179 tasks done, running cost: $0.1025, rows: 471
+  400/4179 tasks done, running cost: $0.1138, rows: 535
+  450/4179 tasks done, running cost: $0.1283, rows: 582
+  500/4179 tasks done, running cost: $0.1446, rows: 663
+  550/4179 tasks done, running cost: $0.1591, rows: 736
+  600/4179 tasks done, running cost: $0.1659, rows: 771
+  650/4179 tasks done, running cost: $0.1886, rows: 891
+  700/4179 tasks done, running cost: $0.2021, rows: 938
+  750/4179 tasks done, running cost: $0.2121, rows: 974
+  800/4179 tasks done, running cost: $0.2288, rows: 1047
+  850/4179 tasks done, running cost: $0.2406, rows: 1112
+  900/4179 tasks done, running cost: $0.2562, rows: 1211
+  950/4179 tasks done, running cost: $0.2689, rows: 1291

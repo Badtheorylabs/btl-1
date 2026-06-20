@@ -1,0 +1,24 @@
+Loading verbose rows...
+  9179 verbose rows found (limit=2000)
+  100/2000 done, cost: $0.0425, success: 86, failed: 0, skipped: 0
+  200/2000 done, cost: $0.1021, success: 198, failed: 0, skipped: 0
+  300/2000 done, cost: $0.1550, success: 297, failed: 0, skipped: 0
+  400/2000 done, cost: $0.2082, success: 392, failed: 0, skipped: 0
+  500/2000 done, cost: $0.2583, success: 497, failed: 0, skipped: 0
+  600/2000 done, cost: $0.3183, success: 589, failed: 0, skipped: 0
+  800/2000 done, cost: $0.4427, success: 796, failed: 0, skipped: 0
+  700/2000 done, cost: $0.4525, success: 806, failed: 0, skipped: 0
+  900/2000 done, cost: $0.5015, success: 901, failed: 0, skipped: 0
+  1000/2000 done, cost: $0.5568, success: 1002, failed: 0, skipped: 0
+  1100/2000 done, cost: $0.6166, success: 1092, failed: 0, skipped: 0
+  1200/2000 done, cost: $0.6661, success: 1191, failed: 0, skipped: 1
+  1300/2000 done, cost: $0.7075, success: 1288, failed: 0, skipped: 2
+  1400/2000 done, cost: $0.7651, success: 1390, failed: 0, skipped: 3
+  1500/2000 done, cost: $0.8141, success: 1486, failed: 0, skipped: 3
+  1600/2000 done, cost: $0.8689, success: 1584, failed: 0, skipped: 3
+  1700/2000 done, cost: $0.9242, success: 1689, failed: 0, skipped: 3
+  1800/2000 done, cost: $0.9829, success: 1787, failed: 0, skipped: 3
+  1900/2000 done, cost: $1.0401, success: 1892, failed: 0, skipped: 3
+  2000/2000 done, cost: $1.0927, success: 1995, failed: 0, skipped: 3
+
+Done. Generated 1997 negatives at $1.0937 (0 failed, 3 skipped)

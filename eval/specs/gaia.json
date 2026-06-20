@@ -1,0 +1,24 @@
+{
+  "name": "gaia",
+  "kind": "text",
+  "data_path_env": "BTL_GAIA_PATH",
+  "default_path": "eval/data/gaia.jsonl",
+  "prompt_selectors": [
+    "prompt",
+    "question",
+    "query",
+    "input",
+    "instruction",
+    "messages[?role=user].content"
+  ],
+  "expected_selectors": [
+    "answer",
+    "reference",
+    "expected",
+    "label",
+    "ground_truth",
+    "solution",
+    "messages[-1].content"
+  ],
+  "allow_refusal": true
+}

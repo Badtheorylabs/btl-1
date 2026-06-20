@@ -1,0 +1,9 @@
+{
+  "manifest": "C:\\Users\\pc\\Downloads\\btl\\btl-1\\data\\teacher\\manifest.jsonl",
+  "base_url": "https://api.openai.com/v1",
+  "model": "dry-run",
+  "requested": 11850,
+  "completed": 11850,
+  "failed": 0,
+  "raw_rows": 11850
+}

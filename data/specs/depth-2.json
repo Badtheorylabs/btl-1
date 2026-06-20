@@ -1,0 +1,211 @@
+{
+  "depth": 2,
+  "label": "Multi-step tool chain",
+  "description": "Plan a sequence of 2-3 dependent tool calls where later steps reference earlier outputs",
+  "generation": {"per_chain": 150, "per_chain_shift": 40},
+  "chains": [
+    {
+      "pattern": "file_search → read_file",
+      "steps": 2,
+      "utterances": [
+        "Find the {filename} {ext} and read it",
+        "Search for {filename} {ext} and show me its contents",
+        "Locate {filename} {ext} and open it",
+        "Find my {filename} {ext} from {time} and display it"
+      ],
+      "output": [
+        {"tool": "file_search", "params": {"filename": "{filename}", "ext": "{ext}"}, "id": "step_1"},
+        {"tool": "read_file", "params": {"path": "$step_1.result.path"}, "depends_on": ["step_1"], "id": "step_2"}
+      ]
+    },
+    {
+      "pattern": "web_search → browse",
+      "steps": 2,
+      "utterances": [
+        "Search for {topic} and open the top result",
+        "Look up {topic} and visit the first link",
+        "Find {topic} online and open the best page",
+        "Google {topic} and read the first result"
+      ],
+      "output": [
+        {"tool": "web_search", "params": {"query": "{topic}"}, "id": "step_1"},
+        {"tool": "browse", "params": {"url": "$step_1.result"}, "depends_on": ["step_1"], "id": "step_2"}
+      ]
+    },
+    {
+      "pattern": "file_search → email",
+      "steps": 2,
+      "utterances": [
+        "Find the {filename} {ext} and email it to {contact}",
+        "Search for {filename} {ext} and send it to {contact}",
+        "Locate {filename} {ext} and forward it to {contact}",
+        "Find {filename} {ext} and attach it to an email for {contact}"
+      ],
+      "output": [
+        {"tool": "file_search", "params": {"filename": "{filename}", "ext": "{ext}"}, "id": "step_1"},
+        {"tool": "email", "params": {"to": "{contact}", "subject": "{filename}", "attachments": ["$step_1.result.path"], "body": "Please see the attached file."}, "depends_on": ["step_1"], "id": "step_2"}
+      ]
+    },
+    {
+      "pattern": "web_search → notes",
+      "steps": 2,
+      "utterances": [
+        "Search for {topic} and save the results to my {note_title} notes",
+        "Look up {topic} and write the findings to my {note_title}",
+        "Find {topic} and add it to my {note_title} notes",
+        "Search {topic} and append results to {note_title}"
+      ],
+      "output": [
+        {"tool": "web_search", "params": {"query": "{topic}"}, "id": "step_1"},
+        {"tool": "notes", "params": {"action": "write", "title": "{note_title}", "content": "$step_1.result"}, "depends_on": ["step_1"], "id": "step_2"}
+      ]
+    },
+    {
+      "pattern": "notes → email",
+      "steps": 2,
+      "utterances": [
+        "Read my {note_title} notes and email them to {contact}",
+        "Get my {note_title} notes and forward them to {contact}",
+        "Check my {note_title} and send it to {contact}",
+        "Read {note_title} and send the contents to {contact}"
+      ],
+      "output": [
+        {"tool": "notes", "params": {"action": "read", "title": "{note_title}"}, "id": "step_1"},
+        {"tool": "email", "params": {"to": "{contact}", "subject": "{note_title}", "body": "$step_1.result"}, "depends_on": ["step_1"], "id": "step_2"}
+      ]
+    },
+    {
+      "pattern": "read_file → write_file",
+      "steps": 2,
+      "utterances": [
+        "Read {filename1}.{ext1} and save a copy as {filename2}.{ext2}",
+        "Open {filename1}.{ext1} and write it to {filename2}.{ext2}",
+        "Read {filename1}.{ext1} and write the contents to {filename2}.{ext2}",
+        "Copy {filename1}.{ext1} to {filename2}.{ext2}"
+      ],
+      "output": [
+        {"tool": "read_file", "params": {"path": "{filename1}.{ext1}"}, "id": "step_1"},
+        {"tool": "write_file", "params": {"path": "{filename2}.{ext2}", "content": "$step_1.result"}, "depends_on": ["step_1"], "id": "step_2"}
+      ]
+    },
+    {
+      "pattern": "shell_command → notes",
+      "steps": 2,
+      "utterances": [
+        "Run {action} on {target} and save the results to my {note_title} notes",
+        "Execute {action} {target} and write the output to {note_title}",
+        "Shell: {action} {target} and log the results in {note_title}",
+        "Run {action} {target} then save output to {note_title}"
+      ],
+      "output": [
+        {"tool": "shell_command", "params": {"command": "{action} {target}"}, "id": "step_1"},
+        {"tool": "notes", "params": {"action": "write", "title": "{note_title}", "content": "$step_1.result"}, "depends_on": ["step_1"], "id": "step_2"}
+      ]
+    },
+    {
+      "pattern": "web_search → file_search → read_file",
+      "steps": 3,
+      "utterances": [
+        "Search for {topic}, find the matching {filename} {ext} in my files, and read it",
+        "Look up {topic} online, locate {filename} {ext} in my Documents, and open it",
+        "Find {topic} on the web, search my files for {filename} {ext}, and display it"
+      ],
+      "output": [
+        {"tool": "web_search", "params": {"query": "{topic}"}, "id": "step_1"},
+        {"tool": "file_search", "params": {"filename": "{filename}", "ext": "{ext}"}, "id": "step_2"},
+        {"tool": "read_file", "params": {"path": "$step_2.result.path"}, "depends_on": ["step_2"], "id": "step_3"}
+      ]
+    },
+    {
+      "pattern": "read_file → reasoning → email",
+      "steps": 3,
+      "utterances": [
+        "Read {filename}.{ext}, analyze it, and email the analysis to {contact}",
+        "Open {filename}.{ext}, think through the findings, and send the summary to {contact}",
+        "Read {filename}.{ext}, reason about its implications, and share with {contact}"
+      ],
+      "output": [
+        {"tool": "read_file", "params": {"path": "{filename}.{ext}"}, "id": "step_1"},
+        {"tool": "reasoning", "params": {"question": "Analyze the contents of this file", "context": "$step_1.result"}, "depends_on": ["step_1"], "id": "step_2"},
+        {"tool": "email", "params": {"to": "{contact}", "subject": "Analysis of {filename}", "body": "$step_2.result"}, "depends_on": ["step_2"], "id": "step_3"}
+      ]
+    },
+    {
+      "pattern": "shell_command → read_file → email",
+      "steps": 3,
+      "utterances": [
+        "Run {action} on {target}, read the output file, and email its contents to {contact}",
+        "Execute {action} {target}, open the result, and forward it to {contact}",
+        "Run {action} {target}, check the output, and send the results to {contact}"
+      ],
+      "output": [
+        {"tool": "shell_command", "params": {"command": "{action} {target} > output.txt"}, "id": "step_1"},
+        {"tool": "read_file", "params": {"path": "output.txt"}, "depends_on": ["step_1"], "id": "step_2"},
+        {"tool": "email", "params": {"to": "{contact}", "subject": "{action} results", "body": "$step_2.result"}, "depends_on": ["step_2"], "id": "step_3"}
+      ]
+    },
+    {
+      "pattern": "file_search → read_file → reasoning",
+      "steps": 3,
+      "utterances": [
+        "Find {filename}.{ext}, read it, and explain what it means",
+        "Locate {filename}.{ext}, open it, and summarize the key points",
+        "Search for {filename}.{ext}, read its contents, and analyze it"
+      ],
+      "output": [
+        {"tool": "file_search", "params": {"filename": "{filename}", "ext": "{ext}"}, "id": "step_1"},
+        {"tool": "read_file", "params": {"path": "$step_1.result.path"}, "depends_on": ["step_1"], "id": "step_2"},
+        {"tool": "reasoning", "params": {"question": "Summarize and analyze this file", "context": "$step_2.result"}, "depends_on": ["step_2"], "id": "step_3"}
+      ]
+    },
+    {
+      "pattern": "clipboard → write_file",
+      "steps": 2,
+      "utterances": [
+        "Read my clipboard and save it to {filename}.{ext}",
+        "Take what is on my clipboard and write it to {filename}.{ext}",
+        "Paste clipboard contents into {filename}.{ext}",
+        "Copy my clipboard to {filename}.{ext}"
+      ],
+      "output": [
+        {"tool": "clipboard", "params": {"action": "read"}, "id": "step_1"},
+        {"tool": "write_file", "params": {"path": "{filename}.{ext}", "content": "$step_1.result"}, "depends_on": ["step_1"], "id": "step_2"}
+      ]
+    },
+    {
+      "pattern": "browse → notes → email",
+      "steps": 3,
+      "utterances": [
+        "Browse {url}, save a summary to my {note_title} notes, and email it to {contact}",
+        "Visit {url}, write the key points to {note_title}, and send them to {contact}",
+        "Open {url}, note the content in {note_title}, and share with {contact}"
+      ],
+      "output": [
+        {"tool": "browse", "params": {"url": "{url}"}, "id": "step_1"},
+        {"tool": "notes", "params": {"action": "write", "title": "{note_title}", "content": "$step_1.result"}, "depends_on": ["step_1"], "id": "step_2"},
+        {"tool": "email", "params": {"to": "{contact}", "subject": "Summary from browsing", "body": "$step_2.result"}, "depends_on": ["step_2"], "id": "step_3"}
+      ]
+    }
+  ],
+  "pools": {
+    "filename": ["budget", "project_plan", "invoice", "report", "notes", "schedule", "proposal", "dataset", "log", "summary", "config", "readme", "draft", "minutes", "todo", "changelog"],
+    "filename1": ["source", "original", "draft_v1", "input", "raw_data", "template"],
+    "filename2": ["copy", "backup", "draft_v2", "output", "processed", "final"],
+    "ext": ["pdf", "xlsx", "docx", "txt", "json", "csv", "md", "log"],
+    "ext1": ["txt", "md", "json", "csv", "yaml", "xml"],
+    "ext2": ["md", "txt", "json", "csv", "log"],
+    "time": ["last week", "yesterday", "this month", "March", "Q1", "today"],
+    "contact": ["Alice", "Bob", "Carol", "the team", "my manager", "the client", "Hank"],
+    "topic": ["AI funding news", "GPU benchmarks", "causal inference", "Python libraries", "quantization", "vector databases", "MCP protocol"],
+    "note_title": ["todo", "reading list", "ideas", "projects", "reminders", "research", "clippings"],
+    "action": ["list all", "find", "count", "show", "sort", "filter", "get the size of"],
+    "target": ["PDF files", "PNG images", "text files", "Python scripts", "JSON files", "log files"],
+    "url": ["the first result", "the top link", "that article", "the GitHub page", "the blog post"]
+  },
+  "shift_axes": {
+    "lexical": ["filename", "ext", "contact", "topic", "note_title", "action", "target", "url"],
+    "formatting": ["utterance_phrasing"],
+    "domain": ["topic", "contact", "note_title"],
+    "structural": ["chain_length", "tool_order", "dependency_pattern"]
+  }
+}

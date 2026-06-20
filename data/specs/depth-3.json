@@ -1,0 +1,315 @@
+{
+  "depth": 3,
+  "label": "Code edit loop",
+  "description": "Read buggy code, identify the causal failure, produce a minimal correct edit, verify against test. This is the first depth where causal structure is unambiguous — an edit is an intervention, a test is causal feedback.",
+  "generation": {
+    "per_bug": 48,
+    "variant_contexts": [
+      "billing",
+      "checkout",
+      "analytics",
+      "support",
+      "inventory",
+      "platform",
+      "onboarding",
+      "payments",
+      "ops",
+      "security",
+      "finance",
+      "compliance",
+      "search",
+      "messaging",
+      "growth",
+      "infra"
+    ]
+  },
+  "bugs": [
+    {
+      "id": "py-off-by-one-01",
+      "language": "python",
+      "bug_type": "off_by_one",
+      "utterance": "Fix the off-by-one error in the sum_to_n function — it should include n in the sum",
+      "buggy_code": "def sum_to_n(n):\n    total = 0\n    for i in range(n):\n        total += i\n    return total",
+      "expected_fix": "def sum_to_n(n):\n    total = 0\n    for i in range(n + 1):\n        total += i\n    return total",
+      "test": "assert sum_to_n(5) == 15",
+      "causal_note": "range(n) produces 0..n-1, missing n. The fix changes the range bound — a one-token causal intervention."
+    },
+    {
+      "id": "py-null-ref-01",
+      "language": "python",
+      "bug_type": "null_reference",
+      "utterance": "Fix the NoneType error in get_user_email — handle the case where user is None",
+      "buggy_code": "def get_user_email(user):\n    return user['email']",
+      "expected_fix": "def get_user_email(user):\n    if user is None:\n        return None\n    return user.get('email')",
+      "test": "assert get_user_email(None) is None",
+      "causal_note": "The bug is assuming user is always a dict. The fix adds a null guard — adding a conditional branch changes the control flow."
+    },
+    {
+      "id": "py-wrong-operator-01",
+      "language": "python",
+      "bug_type": "wrong_operator",
+      "utterance": "Fix the discount logic — items over 100 should get 10% off, not under",
+      "buggy_code": "def apply_discount(price, item_count):\n    if item_count < 100:\n        return price * 0.9\n    return price",
+      "expected_fix": "def apply_discount(price, item_count):\n    if item_count >= 100:\n        return price * 0.9\n    return price",
+      "test": "assert apply_discount(100, 100) == 90.0",
+      "causal_note": "Wrong comparison operator changes which branch executes. The fix is a single character change (< to >=) with a different causal meaning."
+    },
+    {
+      "id": "py-missing-edge-01",
+      "language": "python",
+      "bug_type": "missing_edge_case",
+      "utterance": "Fix divide — it crashes on zero division. Return None when divisor is 0",
+      "buggy_code": "def divide(a, b):\n    return a / b",
+      "expected_fix": "def divide(a, b):\n    if b == 0:\n        return None\n    return a / b",
+      "test": "assert divide(5, 0) is None",
+      "causal_note": "Missing edge case for zero divisor. The fix adds a guard clause — one new conditional branch."
+    },
+    {
+      "id": "py-wrong-variable-01",
+      "language": "python",
+      "bug_type": "wrong_variable",
+      "utterance": "Fix the total calculation — it's using the wrong variable for the quantity",
+      "buggy_code": "def calculate_total(prices, quantities):\n    total = 0\n    for i in range(len(prices)):\n        total += prices[i] * prices[i]\n    return total",
+      "expected_fix": "def calculate_total(prices, quantities):\n    total = 0\n    for i in range(len(prices)):\n        total += prices[i] * quantities[i]\n    return total",
+      "test": "assert calculate_total([10, 20], [2, 3]) == 80",
+      "causal_note": "The wrong variable (prices instead of quantities) gives a wrong total. The fix changes one identifier — a semantically minimal change with a large effect."
+    },
+    {
+      "id": "py-logic-error-01",
+      "language": "python",
+      "bug_type": "logic_error",
+      "utterance": "Fix is_even — it returns True for odd numbers",
+      "buggy_code": "def is_even(n):\n    return n % 2 == 1",
+      "expected_fix": "def is_even(n):\n    return n % 2 == 0",
+      "test": "assert is_even(3) == False",
+      "causal_note": "Boolean logic inverted. One character change with exact opposite causal meaning."
+    },
+    {
+      "id": "py-mutation-01",
+      "language": "python",
+      "bug_type": "mutation",
+      "utterance": "Fix append_to_list — it mutates the default argument across calls",
+      "buggy_code": "def append_to_list(item, lst=[]):\n    lst.append(item)\n    return lst",
+      "expected_fix": "def append_to_list(item, lst=None):\n    if lst is None:\n        lst = []\n    lst.append(item)\n    return lst",
+      "test": "assert append_to_list(1) == [1]; assert append_to_list(2) == [2]",
+      "causal_note": "Mutable default argument is a classic Python bug. The fix changes the causal structure of the default — from shared mutable state to fresh list per call."
+    },
+    {
+      "id": "py-wrong-return-01",
+      "language": "python",
+      "bug_type": "wrong_return",
+      "utterance": "Fix first_element — it should return None, not raise, on empty list",
+      "buggy_code": "def first_element(lst):\n    return lst[0]",
+      "expected_fix": "def first_element(lst):\n    if not lst:\n        return None\n    return lst[0]",
+      "test": "assert first_element([]) is None",
+      "causal_note": "No guard for empty list. Fix adds a conditional check — control flow change."
+    },
+    {
+      "id": "py-type-confusion-01",
+      "language": "python",
+      "bug_type": "type_confusion",
+      "utterance": "Fix concat — it fails when one of the inputs is not a string",
+      "buggy_code": "def concat(a, b):\n    return a + b",
+      "expected_fix": "def concat(a, b):\n    return str(a) + str(b)",
+      "test": "assert concat('hello', 42) == 'hello42'",
+      "causal_note": "Type confusion — + works on str+str and int+int but fails on str+int. Fix wraps both in str()."
+    },
+    {
+      "id": "py-wrong-default-01",
+      "language": "python",
+      "bug_type": "wrong_default",
+      "utterance": "Fix greet — the default greeting should be 'Hello', not 'Hi'",
+      "buggy_code": "def greet(name, greeting='Hi'):\n    return f'{greeting}, {name}'",
+      "expected_fix": "def greet(name, greeting='Hello'):\n    return f'{greeting}, {name}'",
+      "test": "assert greet('Alice') == 'Hello, Alice'",
+      "causal_note": "Wrong default parameter value. Minimal lexical fix with semantic effect."
+    },
+    {
+      "id": "js-off-by-one-01",
+      "language": "javascript",
+      "bug_type": "off_by_one",
+      "utterance": "Fix the loop in sumArray — it should include the last element",
+      "buggy_code": "function sumArray(arr) {\n    let total = 0;\n    for (let i = 0; i < arr.length - 1; i++) {\n        total += arr[i];\n    }\n    return total;\n}",
+      "expected_fix": "function sumArray(arr) {\n    let total = 0;\n    for (let i = 0; i < arr.length; i++) {\n        total += arr[i];\n    }\n    return total;\n}",
+      "test": "console.assert(sumArray([1,2,3,4,5]) === 15)",
+      "causal_note": "Off-by-one: arr.length - 1 skips the last element. Fix removes the -1."
+    },
+    {
+      "id": "js-null-ref-01",
+      "language": "javascript",
+      "bug_type": "null_reference",
+      "utterance": "Fix getName — it crashes when obj is null",
+      "buggy_code": "function getName(obj) {\n    return obj.name;\n}",
+      "expected_fix": "function getName(obj) {\n    return obj?.name ?? null;\n}",
+      "test": "console.assert(getName(null) === null)",
+      "causal_note": "Optional chaining fixes the null reference. One operator change with a large causal effect."
+    },
+    {
+      "id": "js-wrong-operator-01",
+      "language": "javascript",
+      "bug_type": "wrong_operator",
+      "utterance": "Fix canAccess — users under 18 should not have access",
+      "buggy_code": "function canAccess(age) {\n    return age > 18;\n}",
+      "expected_fix": "function canAccess(age) {\n    return age >= 18;\n}",
+      "test": "console.assert(canAccess(18) === true)",
+      "causal_note": "Wrong comparison. > excludes 18, >= includes it. One character, different causal boundary."
+    },
+    {
+      "id": "js-missing-edge-01",
+      "language": "javascript",
+      "bug_type": "missing_edge_case",
+      "utterance": "Fix getFirst — return undefined for empty arrays",
+      "buggy_code": "function getFirst(arr) {\n    return arr[0];\n}",
+      "expected_fix": "function getFirst(arr) {\n    if (arr.length === 0) return undefined;\n    return arr[0];\n}",
+      "test": "console.assert(getFirst([]) === undefined)",
+      "causal_note": "No empty-check guard. Fix adds an early return conditional."
+    },
+    {
+      "id": "ts-type-error-01",
+      "language": "typescript",
+      "bug_type": "type_error",
+      "utterance": "Fix the type annotation — the function returns a string, not a number",
+      "buggy_code": "function greet(name: string): number {\n    return `Hello, ${name}`;\n}",
+      "expected_fix": "function greet(name: string): string {\n    return `Hello, ${name}`;\n}",
+      "test": "const result: string = greet('Alice')",
+      "causal_note": "Wrong return type annotation. The fix changes number to string — the correct causal type."
+    },
+    {
+      "id": "ts-null-ref-01",
+      "language": "typescript",
+      "bug_type": "null_reference",
+      "utterance": "Fix getConfig — handle the case where config is undefined",
+      "buggy_code": "function getConfig(config: Record<string, any> | undefined): string {\n    return config.theme;\n}",
+      "expected_fix": "function getConfig(config: Record<string, any> | undefined): string {\n    return config?.theme ?? 'default';\n}",
+      "test": "console.assert(getConfig(undefined) === 'default')",
+      "causal_note": "No undefined guard. Fix adds optional chaining with nullish coalescing."
+    },
+    {
+      "id": "py-logic-error-02",
+      "language": "python",
+      "bug_type": "logic_error",
+      "utterance": "Fix the validation — it should reject empty strings, not accept them",
+      "buggy_code": "def validate(s):\n    if len(s) > 0:\n        return True\n    return False",
+      "expected_fix": "def validate(s):\n    if len(s) > 0:\n        return False\n    return True",
+      "test": "assert validate('') == False; assert validate('hi') == True",
+      "causal_note": "Boolean branches swapped. The fix inverts the return values — same condition, different causal mapping."
+    },
+    {
+      "id": "py-wrong-variable-02",
+      "language": "python",
+      "bug_type": "wrong_variable",
+      "utterance": "Fix the area calculation — it should use radius, not diameter",
+      "buggy_code": "import math\ndef circle_area(diameter):\n    return math.pi * (diameter / 2) ** 2",
+      "expected_fix": "import math\ndef circle_area(radius):\n    return math.pi * radius ** 2",
+      "test": "assert circle_area(1) == math.pi",
+      "causal_note": "Wrong variable name. The function expects diameter but divides by 2 to get radius. Better to just take radius directly — removes unnecessary computation."
+    },
+    {
+      "id": "py-missing-edge-02",
+      "language": "python",
+      "bug_type": "missing_edge_case",
+      "utterance": "Fix safe_divide — handle both zero division AND type errors",
+      "buggy_code": "def safe_divide(a, b):\n    if b == 0:\n        return None\n    return a / b",
+      "expected_fix": "def safe_divide(a, b):\n    try:\n        if b == 0:\n            return None\n        return a / b\n    except TypeError:\n        return None",
+      "test": "assert safe_divide('a', 2) is None",
+      "causal_note": "Handles zero division but not type errors. Fix adds a try/except — one additional causal branch for a different failure mode."
+    },
+    {
+      "id": "js-logic-error-01",
+      "language": "javascript",
+      "bug_type": "logic_error",
+      "utterance": "Fix isLeapYear — years divisible by 100 are not leap years unless also divisible by 400",
+      "buggy_code": "function isLeapYear(year) {\n    return year % 4 === 0;\n}",
+      "expected_fix": "function isLeapYear(year) {\n    if (year % 400 === 0) return true;\n    if (year % 100 === 0) return false;\n    return year % 4 === 0;\n}",
+      "test": "console.assert(isLeapYear(1900) === false); console.assert(isLeapYear(2000) === true)",
+      "causal_note": "Incomplete leap year logic. Missing the century rule and the 400-year exception. Fix adds two additional conditional branches."
+    },
+    {
+      "id": "py-wrong-operator-02",
+      "language": "python",
+      "bug_type": "wrong_operator",
+      "utterance": "Fix the access check — it should deny access if both conditions are false, not if either is false",
+      "buggy_code": "def can_access(is_admin, is_verified):\n    return is_admin or is_verified",
+      "expected_fix": "def can_access(is_admin, is_verified):\n    return is_admin and is_verified",
+      "test": "assert can_access(True, False) == False",
+      "causal_note": "Wrong boolean operator. OR allows access if either is true. AND requires both. Different causal rule for access."
+    },
+
+    {"id":"py-index-error-01","language":"python","bug_type":"index_error","utterance":"Fix get_last — it crashes on empty list, return None instead","buggy_code":"def get_last(lst):\n    return lst[-1]","expected_fix":"def get_last(lst):\n    if not lst:\n        return None\n    return lst[-1]","test":"assert get_last([]) is None","causal_note":"No empty check before indexing. Fix adds a guard clause."},
+    {"id":"py-infinite-loop-01","language":"python","bug_type":"infinite_loop","utterance":"Fix countdown — it never terminates because the loop variable is not decremented","buggy_code":"def countdown(n):\n    result = []\n    while n > 0:\n        result.append(n)\n    return result","expected_fix":"def countdown(n):\n    result = []\n    while n > 0:\n        result.append(n)\n        n -= 1\n    return result","test":"assert countdown(3) == [3,2,1]","causal_note":"Missing decrement causes infinite loop. Fix adds n -= 1 — a single-line causal intervention."},
+    {"id":"py-race-read-01","language":"python","bug_type":"race_condition","utterance":"Fix the counter — it loses updates under concurrent access","buggy_code":"counter = 0\ndef increment():\n    global counter\n    counter += 1","expected_fix":"import threading\nlock = threading.Lock()\ncounter = 0\ndef increment():\n    global counter, lock\n    with lock:\n        counter += 1","test":"# concurrent test would pass","causal_note":"Missing lock causes lost updates under concurrency. Fix adds a threading.Lock — synchronisation is a causal intervention on shared state."},
+    {"id":"py-wrong-key-01","language":"python","bug_type":"wrong_key","utterance":"Fix get_score — it uses 'name' instead of 'score' as the dictionary key","buggy_code":"def get_score(record):\n    return record['name']","expected_fix":"def get_score(record):\n    return record['score']","test":"assert get_score({'score': 95}) == 95","causal_note":"Wrong dictionary key. One identifier change with different semantic meaning."},
+    {"id":"py-sql-injection-01","language":"python","bug_type":"security","utterance":"Fix the query — it is vulnerable to SQL injection via string interpolation","buggy_code":"def get_user(username):\n    query = f\"SELECT * FROM users WHERE name = '{username}'\"\n    return execute(query)","expected_fix":"def get_user(username):\n    query = 'SELECT * FROM users WHERE name = ?'\n    return execute(query, (username,))","test":"assert get_user(\"'; DROP TABLE users; --\") is not None","causal_note":"SQL injection via string interpolation. Fix uses parameterised query — the intervention is changing the causal flow of untrusted input into the query."},
+    {"id":"py-memory-leak-01","language":"python","bug_type":"memory_leak","utterance":"Fix cache — it grows unboundedly because there is no eviction policy","buggy_code":"cache = {}\ndef get_data(key, fetch_fn):\n    if key not in cache:\n        cache[key] = fetch_fn()\n    return cache[key]","expected_fix":"from functools import lru_cache\n@lru_cache(maxsize=128)\ndef get_data(key, fetch_fn):\n    return fetch_fn()","test":"# cache stays bounded","causal_note":"Unbounded cache growth. Fix adds LRU eviction — a causal constraint on memory."},
+    {"id":"py-wrong-import-01","language":"python","bug_type":"wrong_import","utterance":"Fix the import — use json, not simplejson","buggy_code":"import simplejson\ndef parse(data):\n    return simplejson.loads(data)","expected_fix":"import json\ndef parse(data):\n    return json.loads(data)","test":"assert isinstance(parse('{\"a\":1}'), dict)","causal_note":"Wrong import. simplejson and json have different APIs. Fix changes the import source."},
+    {"id":"py-assert-bug-01","language":"python","bug_type":"logic_error","utterance":"Fix check_password — the assertion is wrong, it should reject empty passwords","buggy_code":"def check_password(pw):\n    assert pw is not None\n    return len(pw) > 0","expected_fix":"def check_password(pw):\n    if pw is None:\n        return False\n    return len(pw) > 0","test":"assert check_password(None) == False","causal_note":"assert raises an exception instead of returning False. Fix replaces assert with an if guard — different causal path."},
+    {"id":"py-overwrite-01","language":"python","bug_type":"mutation","utterance":"Fix add_user — it overwrites existing users with the same ID instead of skipping","buggy_code":"def add_user(users, uid, name):\n    users[uid] = name\n    return users","expected_fix":"def add_user(users, uid, name):\n    if uid not in users:\n        users[uid] = name\n    return users","test":"assert add_user({'a1':'Alice'}, 'a1', 'Bob')['a1'] == 'Alice'","causal_note":"Overwrites without checking. Fix adds an existence guard."},
+
+    {"id":"go-off-by-one-01","language":"go","bug_type":"off_by_one","utterance":"Fix the sum function — it misses the last element","buggy_code":"func sum(nums []int) int {\n    total := 0\n    for i := 0; i < len(nums)-1; i++ {\n        total += nums[i]\n    }\n    return total\n}","expected_fix":"func sum(nums []int) int {\n    total := 0\n    for i := 0; i < len(nums); i++ {\n        total += nums[i]\n    }\n    return total\n}","test":"// sum([]int{1,2,3}) == 6","causal_note":"Off-by-one: len(nums)-1 skips last element. Fix removes the -1."},
+    {"id":"go-nil-deref-01","language":"go","bug_type":"null_reference","utterance":"Fix getName — it panics when the pointer is nil","buggy_code":"type User struct { Name string }\nfunc getName(u *User) string {\n    return u.Name\n}","expected_fix":"func getName(u *User) string {\n    if u == nil {\n        return \"\"\n    }\n    return u.Name\n}","test":"// getName(nil) == \"\"","causal_note":"Nil pointer dereference panics. Fix adds a nil guard — control flow change prevents the crash."},
+    {"id":"go-slice-bounds-01","language":"go","bug_type":"index_error","utterance":"Fix first — it panics on empty slice, return zero value instead","buggy_code":"func first(s []int) int {\n    return s[0]\n}","expected_fix":"func first(s []int) int {\n    if len(s) == 0 {\n        return 0\n    }\n    return s[0]\n}","test":"// first([]int{}) == 0","causal_note":"No bounds check before indexing. Fix adds a length guard."},
+    {"id":"go-wrong-operator-01","language":"go","bug_type":"wrong_operator","utterance":"Fix canVote — the age threshold should be 18 or older, not strictly over 18","buggy_code":"func canVote(age int) bool {\n    return age > 18\n}","expected_fix":"func canVote(age int) bool {\n    return age >= 18\n}","test":"// canVote(18) == true","causal_note":"> excludes 18, >= includes it. One character difference in causal boundary."},
+    {"id":"go-mutex-01","language":"go","bug_type":"race_condition","utterance":"Fix the counter — concurrent access corrupts the value","buggy_code":"type Counter struct {\n    val int\n}\nfunc (c *Counter) Inc() { c.val++ }\nfunc (c *Counter) Get() int { return c.val }","expected_fix":"type Counter struct {\n    mu sync.Mutex\n    val int\n}\nfunc (c *Counter) Inc() { c.mu.Lock(); c.val++; c.mu.Unlock() }\nfunc (c *Counter) Get() int { c.mu.Lock(); defer c.mu.Unlock(); return c.val }","test":"// concurrent access is safe","causal_note":"Missing mutex causes data races. Fix adds sync.Mutex — synchronisation as causal ordering."},
+    {"id":"go-close-nil-01","language":"go","bug_type":"null_reference","utterance":"Fix sendMessage — it panics when the channel is nil","buggy_code":"func sendMessage(ch chan string, msg string) {\n    ch <- msg\n}","expected_fix":"func sendMessage(ch chan string, msg string) {\n    if ch == nil {\n        return\n    }\n    ch <- msg\n}","test":"// sendMessage(nil, \"hi\") does not panic","causal_note":"Send on nil channel blocks forever. Fix adds a nil guard before the send."},
+    {"id":"go-string-builder-01","language":"go","bug_type":"performance","utterance":"Fix buildString — use strings.Builder instead of concatenation for efficiency","buggy_code":"func buildString(words []string) string {\n    result := \"\"\n    for _, w := range words {\n        result += w\n    }\n    return result\n}","expected_fix":"func buildString(words []string) string {\n    var b strings.Builder\n    for _, w := range words {\n        b.WriteString(w)\n    }\n    return b.String()\n}","test":"// O(n) instead of O(n^2)","causal_note":"String concatenation in a loop is O(n^2). Fix uses strings.Builder — a causal optimisation of allocation patterns."},
+
+    {"id":"rust-off-by-one-01","language":"rust","bug_type":"off_by_one","utterance":"Fix the sum function — it excludes the last element","buggy_code":"fn sum(nums: &[i32]) -> i32 {\n    let mut total = 0;\n    for i in 0..nums.len()-1 {\n        total += nums[i];\n    }\n    total\n}","expected_fix":"fn sum(nums: &[i32]) -> i32 {\n    nums.iter().sum()\n}","test":"// assert_eq!(sum(&[1,2,3]), 6)","causal_note":"Off-by-one in range. Fix uses iter().sum() — idiomatic Rust avoids the manual index entirely."},
+    {"id":"rust-unwrap-01","language":"rust","bug_type":"null_reference","utterance":"Fix get_first — it panics on None, return default instead","buggy_code":"fn get_first(items: Vec<i32>) -> i32 {\n    items.first().unwrap()\n}","expected_fix":"fn get_first(items: Vec<i32>) -> i32 {\n    items.first().copied().unwrap_or(0)\n}","test":"// assert_eq!(get_first(vec![]), 0)","causal_note":".unwrap() panics on None. Fix uses unwrap_or(0) — a safe causal fallback."},
+    {"id":"rust-clone-01","language":"rust","bug_type":"wrong_variable","utterance":"Fix the borrow — it clones unnecessarily causing performance issues","buggy_code":"fn process(data: Vec<String>) -> usize {\n    data.len()\n}\nfn main() {\n    let v = vec![\"a\".to_string()];\n    let len = process(v.clone());\n    println!(\"{}\", v.len());\n}","expected_fix":"fn process(data: &[String]) -> usize {\n    data.len()\n}\nfn main() {\n    let v = vec![\"a\".to_string()];\n    let len = process(&v);\n    println!(\"{}\", v.len());\n}","test":"// no clone needed","causal_note":"Unnecessary clone for read-only access. Fix changes to &[String] — a borrow instead of move is a causal difference in ownership."},
+    {"id":"rust-mutex-01","language":"rust","bug_type":"race_condition","utterance":"Fix the shared counter — it doesn't synchronise access","buggy_code":"use std::sync::{Arc, Mutex};\nuse std::thread;\nfn main() {\n    let counter = Arc::new(Mutex::new(0));\n    let mut handles = vec![];\n    for _ in 0..10 {\n        let c = counter.clone();\n        handles.push(thread::spawn(move || {\n            let mut val = c.lock().unwrap();\n            *val += 1;\n        }));\n    }\n}","expected_fix":"// code is correct — no fix needed, the Mutex is already used","test":"// already correct","causal_note":"The code is actually correct. This is a distractor: the model must recognise the fix is already in place and not make unnecessary changes."},
+    {"id":"rust-option-01","language":"rust","bug_type":"type_confusion","utterance":"Fix find_user — it should return Option<String>, not Result","buggy_code":"fn find_user(id: u32) -> Result<String, String> {\n    if id == 0 {\n        Err(\"not found\".to_string())\n    } else {\n        Ok(\"user\".to_string())\n    }\n}","expected_fix":"fn find_user(id: u32) -> Option<String> {\n    if id == 0 {\n        None\n    } else {\n        Some(\"user\".to_string())\n    }\n}","test":"// assert_eq!(find_user(0), None)","causal_note":"Using Result where Option is appropriate. The fix changes the return type and error semantics — different causal type."},
+    {"id":"rust-vec-remove-01","language":"rust","bug_type":"logic_error","utterance":"Fix remove_all — it only removes the first occurrence instead of all","buggy_code":"fn remove_all(vec: &mut Vec<i32>, val: i32) {\n    if let Some(pos) = vec.iter().position(|x| *x == val) {\n        vec.remove(pos);\n    }\n}","expected_fix":"fn remove_all(vec: &mut Vec<i32>, val: i32) {\n    vec.retain(|x| *x != val);\n}","test":"// let mut v = vec![1,2,1,3]; remove_all(&mut v, 1); assert_eq!(v, vec![2,3])","causal_note":"Removes only the first match. Fix uses retain() which removes all matching elements — different causal scope."},
+    {"id":"rust-iter-bug-01","language":"rust","bug_type":"logic_error","utterance":"Fix double — it should double each element but returns the original","buggy_code":"fn double(nums: Vec<i32>) -> Vec<i32> {\n    nums.iter().map(|x| x * 2).collect()\n}","expected_fix":"fn double(nums: &[i32]) -> Vec<i32> {\n    nums.iter().map(|x| x * 2).collect()\n}","test":"// assert_eq!(double(&[1,2,3]), vec![2,4,6])","causal_note":"Takes ownership unnecessarily. Fix changes to &[i32] — borrowing is a causal difference in ownership semantics."},
+
+    {"id":"java-off-by-one-01","language":"java","bug_type":"off_by_one","utterance":"Fix the loop in sumArray — it misses the last element","buggy_code":"public int sumArray(int[] arr) {\n    int total = 0;\n    for (int i = 0; i < arr.length - 1; i++) {\n        total += arr[i];\n    }\n    return total;\n}","expected_fix":"public int sumArray(int[] arr) {\n    int total = 0;\n    for (int i = 0; i < arr.length; i++) {\n        total += arr[i];\n    }\n    return total;\n}","test":"// assert sumArray(new int[]{1,2,3}) == 6","causal_note":"Off-by-one: arr.length - 1 skips the last element."},
+    {"id":"java-null-deref-01","language":"java","bug_type":"null_reference","utterance":"Fix getName — it throws NullPointerException when user is null","buggy_code":"public String getName(User user) {\n    return user.getName();\n}","expected_fix":"public String getName(User user) {\n    if (user == null) return null;\n    return user.getName();\n}","test":"// assertNull(getName(null))","causal_note":"Null dereference causes NPE. Fix adds a null guard."},
+    {"id":"java-wrong-operator-01","language":"java","bug_type":"wrong_operator","utterance":"Fix canEnter — users under 18 should not be allowed","buggy_code":"public boolean canEnter(int age) {\n    return age > 18;\n}","expected_fix":"public boolean canEnter(int age) {\n    return age >= 18;\n}","test":"// assertFalse(canEnter(17)); assertTrue(canEnter(18))","causal_note":"> excludes 18, >= includes it."},
+    {"id":"java-index-out-of-bounds-01","language":"java","bug_type":"index_error","utterance":"Fix getLast — it crashes on empty array, return null instead","buggy_code":"public Integer getLast(Integer[] arr) {\n    return arr[arr.length - 1];\n}","expected_fix":"public Integer getLast(Integer[] arr) {\n    if (arr.length == 0) return null;\n    return arr[arr.length - 1];\n}","test":"// assertNull(getLast(new Integer[]{}))","causal_note":"No length check before indexing an empty array."},
+    {"id":"java-string-concat-01","language":"java","bug_type":"performance","utterance":"Fix buildString — use StringBuilder instead of + concatenation in a loop","buggy_code":"public String buildString(String[] words) {\n    String result = \"\";\n    for (String w : words) {\n        result += w;\n    }\n    return result;\n}","expected_fix":"public String buildString(String[] words) {\n    StringBuilder sb = new StringBuilder();\n    for (String w : words) {\n        sb.append(w);\n    }\n    return sb.toString();\n}","test":"// O(n) instead of O(n^2)","causal_note":"String concatenation in a loop creates O(n^2) copies. Fix uses StringBuilder — a causal optimisation."},
+    {"id":"java-concurrent-mod-01","language":"java","bug_type":"concurrent_modification","utterance":"Fix removeEven — it throws ConcurrentModificationException","buggy_code":"public List<Integer> removeEven(List<Integer> list) {\n    for (Integer n : list) {\n        if (n % 2 == 0) {\n            list.remove(n);\n        }\n    }\n    return list;\n}","expected_fix":"public List<Integer> removeEven(List<Integer> list) {\n    list.removeIf(n -> n % 2 == 0);\n    return list;\n}","test":"// assertTrue(removeEven(Arrays.asList(1,2,3,4)).size() == 2)","causal_note":"Modifying a list while iterating throws ConcurrentModificationException. Fix uses removeIf — a causal change in the iteration protocol."},
+    {"id":"java-divide-by-zero-01","language":"java","bug_type":"missing_edge_case","utterance":"Fix divide — it throws ArithmeticException on zero divisor","buggy_code":"public Integer divide(int a, int b) {\n    return a / b;\n}","expected_fix":"public Integer divide(int a, int b) {\n    if (b == 0) return null;\n    return a / b;\n}","test":"// assertNull(divide(5, 0))","causal_note":"Zero divisor causes ArithmeticException. Fix adds a guard clause."},
+
+    {"id":"cpp-off-by-one-01","language":"cpp","bug_type":"off_by_one","utterance":"Fix the sum function — it misses the last element","buggy_code":"int sum(int arr[], int n) {\n    int total = 0;\n    for (int i = 0; i < n - 1; i++) {\n        total += arr[i];\n    }\n    return total;\n}","expected_fix":"int sum(int arr[], int n) {\n    int total = 0;\n    for (int i = 0; i < n; i++) {\n        total += arr[i];\n    }\n    return total;\n}","test":"// assert(sum(new int[]{1,2,3}, 3) == 6)","causal_note":"Off-by-one: n - 1 skips the last element."},
+    {"id":"cpp-null-ptr-01","language":"cpp","bug_type":"null_reference","utterance":"Fix getName — it segfaults when the pointer is null","buggy_code":"std::string getName(User* user) {\n    return user->name;\n}","expected_fix":"std::string getName(User* user) {\n    if (user == nullptr) return \"\";\n    return user->name;\n}","test":"// assert(getName(nullptr) == \"\")","causal_note":"Null pointer dereference causes a segfault. Fix adds a null guard."},
+    {"id":"cpp-buffer-overflow-01","language":"cpp","bug_type":"buffer_overflow","utterance":"Fix copyBuffer — it writes past the end of the destination","buggy_code":"void copyBuffer(const char* src, char* dst, int len) {\n    for (int i = 0; i <= len; i++) {\n        dst[i] = src[i];\n    }\n}","expected_fix":"void copyBuffer(const char* src, char* dst, int len) {\n    for (int i = 0; i < len; i++) {\n        dst[i] = src[i];\n    }\n}","test":"// char d[5]; copyBuffer(\"hello\", d, 5); d[4] == 'o'","causal_note":"Buffer overflow: <= writes one past the end. Fix uses < instead of <=."},
+    {"id":"cpp-memory-leak-01","language":"cpp","bug_type":"memory_leak","utterance":"Fix createUser — it leaks memory, use a smart pointer","buggy_code":"User* createUser(const std::string& name) {\n    return new User(name);\n}","expected_fix":"std::unique_ptr<User> createUser(const std::string& name) {\n    return std::make_unique<User>(name);\n}","test":"// no manual delete needed","causal_note":"Raw new without delete leaks memory. Fix uses unique_ptr — RAII as causal lifecycle management."},
+    {"id":"cpp-wrong-iterator-01","language":"cpp","bug_type":"logic_error","utterance":"Fix removeAll — it removes while iterating incorrectly","buggy_code":"void removeAll(std::vector<int>& v, int val) {\n    for (auto it = v.begin(); it != v.end(); ++it) {\n        if (*it == val) {\n            v.erase(it);\n        }\n    }\n}","expected_fix":"void removeAll(std::vector<int>& v, int val) {\n    v.erase(std::remove(v.begin(), v.end(), val), v.end());\n}","test":"// std::vector<int> v = {1,2,1,3}; removeAll(v, 1); assert(v.size() == 2)","causal_note":"Erasing while iterating invalidates the iterator. Fix uses erase-remove idiom — a causal difference in iteration semantics."},
+    {"id":"cpp-dangling-ref-01","language":"cpp","bug_type":"dangling_reference","utterance":"Fix getMessage — it returns a dangling reference to a local variable","buggy_code":"const std::string& getMessage() {\n    std::string msg = \"hello\";\n    return msg;\n}","expected_fix":"std::string getMessage() {\n    return \"hello\";\n}","test":"// getMessage() == \"hello\"","causal_note":"Returning reference to a local causes undefined behaviour. Fix returns by value — a causal difference in lifetime."},
+    {"id":"cpp-virtual-dtor-01","language":"cpp","bug_type":"wrong_destructor","utterance":"Fix the base class — add a virtual destructor to prevent undefined behaviour on delete","buggy_code":"class Base {\npublic:\n    ~Base() {}\n    virtual void doit() = 0;\n};\nclass Derived : public Base {\npublic:\n    int* data = new int[100];\n    ~Derived() { delete[] data; }\n};","expected_fix":"class Base {\npublic:\n    virtual ~Base() {}\n    virtual void doit() = 0;\n};","test":"// Base* b = new Derived(); delete b; // no leak","causal_note":"Non-virtual destructor in base class causes undefined behaviour when deleting through base pointer. The fix is one keyword — virtual."},
+
+    {"id":"js-wrong-this-01","language":"javascript","bug_type":"wrong_context","utterance":"Fix the click handler — it loses the 'this' context","buggy_code":"function Button(text) {\n    this.text = text;\n    this.onClick = function() {\n        console.log(this.text);\n    };\n}","expected_fix":"function Button(text) {\n    this.text = text;\n    this.onClick = () => {\n        console.log(this.text);\n    };\n}","test":"// new Button('OK').onClick() logs 'OK'","causal_note":"Regular function loses 'this' context. Fix uses arrow function — lexical scoping of 'this' is a causal difference in execution context."},
+    {"id":"js-undefined-access-01","language":"javascript","bug_type":"null_reference","utterance":"Fix getUserCity — it throws when address is undefined","buggy_code":"function getUserCity(user) {\n    return user.address.city;\n}","expected_fix":"function getUserCity(user) {\n    return user?.address?.city ?? null;\n}","test":"// assert(getUserCity({}) === null)","causal_note":"No optional chaining. Nested property access throws on undefined."},
+    {"id":"js-type-coercion-01","language":"javascript","bug_type":"type_confusion","utterance":"Fix sum — it concatenates instead of adding when inputs are strings","buggy_code":"function sum(a, b) {\n    return a + b;\n}","expected_fix":"function sum(a, b) {\n    return Number(a) + Number(b);\n}","test":"// assert(sum('5', '3') === 8)","causal_note":"+ concatenates strings instead of adding. Fix casts both to Number — a causal type intervention."},
+    {"id":"js-closure-bug-01","language":"javascript","bug_type":"logic_error","utterance":"Fix createCounters — each counter should track its own index","buggy_code":"function createCounters() {\n    var counters = [];\n    for (var i = 0; i < 3; i++) {\n        counters.push(function() { return i; });\n    }\n    return counters;\n}","expected_fix":"function createCounters() {\n    const counters = [];\n    for (let i = 0; i < 3; i++) {\n        counters.push(() => i);\n    }\n    return counters;\n}","test":"// createCounters()[0]() == 0, [1]() == 1, [2]() == 2","causal_note":"var creates function-scoped variable, all closures share the same i. Fix uses let for block scoping — a causal difference in variable lifetime."},
+    {"id":"js-array-empty-01","language":"javascript","bug_type":"index_error","utterance":"Fix getFirst — it returns undefined for empty arrays, should return null","buggy_code":"function getFirst(arr) {\n    return arr[0];\n}","expected_fix":"function getFirst(arr) {\n    return arr.length === 0 ? null : arr[0];\n}","test":"// assert(getFirst([]) === null)","causal_note":"Returns undefined for empty array (implicit). Fix explicitly returns null — different causal default."},
+
+    {"id":"ts-generic-bound-01","language":"typescript","bug_type":"type_error","utterance":"Fix the generic constraint — T should extend HasId, not be unconstrained","buggy_code":"function getIds(items: any[]): number[] {\n    return items.map(i => i.id);\n}","expected_fix":"interface HasId { id: number }\nfunction getIds<T extends HasId>(items: T[]): number[] {\n    return items.map(i => i.id);\n}","test":"// const result: number[] = getIds([{id:1}, {id:2}])","causal_note":"Unconstrained any[]. Fix uses a generic constraint — a causal type narrowing."},
+    {"id":"ts-union-narrow-01","language":"typescript","bug_type":"type_error","utterance":"Fix processInput — it doesn't narrow the union type before using string methods","buggy_code":"function processInput(input: string | number) {\n    return input.toUpperCase();\n}","expected_fix":"function processInput(input: string | number) {\n    if (typeof input === 'string') {\n        return input.toUpperCase();\n    }\n    return String(input).toUpperCase();\n}","test":"// processInput('hello') === 'HELLO'","causal_note":"No type narrowing before calling string method on union type. Fix adds a typeof guard — a causal type check."},
+    {"id":"ts-non-null-01","language":"typescript","bug_type":"null_reference","utterance":"Fix getDisplayName — it doesn't handle null user","buggy_code":"function getDisplayName(user: { name: string } | null): string {\n    return user.name;\n}","expected_fix":"function getDisplayName(user: { name: string } | null): string {\n    return user?.name ?? 'Anonymous';\n}","test":"// assert(getDisplayName(null) === 'Anonymous')","causal_note":"No null guard on union type. Fix adds optional chaining with nullish coalescing."},
+    {"id":"ts-index-signature-01","language":"typescript","bug_type":"type_error","utterance":"Fix getValue — the index signature should allow string keys","buggy_code":"interface Dict {\n    [key: string]: any;\n}\nfunction getValue(d: Dict, key: string) {\n    return d.key;\n}","expected_fix":"function getValue(d: Dict, key: string) {\n    return d[key];\n}","test":"// getValue({name:'alice'}, 'name') === 'alice'","causal_note":"d.key accesses the literal 'key' property, not the dynamic key. Fix uses bracket notation — a causal difference in property access semantics."},
+    {"id":"ts-async-bug-01","language":"typescript","bug_type":"logic_error","utterance":"Fix fetchData — it doesn't await the promise, returns a pending promise","buggy_code":"function fetchData(url: string): string {\n    return fetch(url).then(r => r.text());\n}","expected_fix":"async function fetchData(url: string): Promise<string> {\n    const res = await fetch(url);\n    return res.text();\n}","test":"// const data: string = await fetchData('/api')","causal_note":"Returns a promise instead of awaiting. Fix makes the function async and uses await — a causal difference in async flow."},
+
+    {"id":"rb-nil-ref-01","language":"ruby","bug_type":"null_reference","utterance":"Fix get_name — it crashes when user is nil","buggy_code":"def get_name(user)\n  user[:name]\nend","expected_fix":"def get_name(user)\n  user&.[](:name)\nend","test":"# assert get_name(nil) == nil","causal_note":"No nil guard. Fix uses safe navigation operator (&.) — a causal nil check."},
+    {"id":"rb-off-by-one-01","language":"ruby","bug_type":"off_by_one","utterance":"Fix the sum method — it misses the last element","buggy_code":"def sum(arr)\n  total = 0\n  (0...arr.length).each { |i| total += arr[i] }\n  total\nend","expected_fix":"def sum(arr)\n  total = 0\n  (0..arr.length-1).each { |i| total += arr[i] }\n  total\nend","test":"# assert sum([1,2,3]) == 6","causal_note":"Three-dot range (...) excludes the end. Two-dot range (..) includes it. One character causal difference."},
+
+    {"id":"kt-null-01","language":"kotlin","bug_type":"null_reference","utterance":"Fix getName — it crashes when user is null","buggy_code":"fun getName(user: User?): String {\n    return user.name\n}","expected_fix":"fun getName(user: User?): String {\n    return user?.name ?: \"\"\n}","test":"// assert(getName(null) == \"\")","causal_note":"No safe call on nullable type. Fix adds ?. and ?: — Kotlin's safe access operators."},
+    {"id":"kt-off-by-one-01","language":"kotlin","bug_type":"off_by_one","utterance":"Fix sumArray — it skips the last element","buggy_code":"fun sumArray(arr: IntArray): Int {\n    var total = 0\n    for (i in 0 until arr.size - 1) {\n        total += arr[i]\n    }\n    return total\n}","expected_fix":"fun sumArray(arr: IntArray): Int {\n    return arr.sum()\n}","test":"// assert(sumArray(intArrayOf(1,2,3)) == 6)","causal_note":"Off-by-one with until. Fix uses built-in .sum() — idiomatic Kotlin avoids manual index."},
+
+    {"id":"sw-nil-01","language":"swift","bug_type":"null_reference","utterance":"Fix getName — it crashes when user is nil","buggy_code":"func getName(user: [String: Any]?) -> String {\n    return user![\"name\"] as! String\n}","expected_fix":"func getName(user: [String: Any]?) -> String? {\n    return user?[\"name\"] as? String\n}","test":"// assert(getName(nil) == nil)","causal_note":"Force unwrap crashes on nil. Fix uses optional chaining and optional cast — safer causal unwrapping."},
+    {"id":"sw-off-by-one-01","language":"swift","bug_type":"off_by_one","utterance":"Fix sumArray — it misses the last element","buggy_code":"func sumArray(_ arr: [Int]) -> Int {\n    var total = 0\n    for i in 0..<arr.count-1 {\n        total += arr[i]\n    }\n    return total\n}","expected_fix":"func sumArray(_ arr: [Int]) -> Int {\n    return arr.reduce(0, +)\n}","test":"// assert(sumArray([1,2,3]) == 6)","causal_note":"Off-by-one in half-open range. Fix uses reduce — idiomatic Swift."},
+
+    {"id":"sql-injection-01","language":"sql","bug_type":"security","utterance":"Fix the query — it concatenates user input directly into SQL","buggy_code":"CREATE FUNCTION get_user(uname TEXT) RETURNS TABLE AS $$\nBEGIN\n    RETURN QUERY EXECUTE 'SELECT * FROM users WHERE name = ''' || uname || ''';\nEND;\n$$ LANGUAGE plpgsql;","expected_fix":"CREATE FUNCTION get_user(uname TEXT) RETURNS TABLE AS $$\nBEGIN\n    RETURN QUERY SELECT * FROM users WHERE name = uname;\nEND;\n$$ LANGUAGE plpgsql;","test":"-- CALL get_user('admin') returns the user","causal_note":"SQL injection via string concatenation. Fix uses parameterised query — the intervention is separating data from code."},
+    {"id":"sql-null-compare-01","language":"sql","bug_type":"logic_error","utterance":"Fix the comparison — NULL = NULL evaluates to NULL, not TRUE","buggy_code":"SELECT * FROM users WHERE deleted = NULL","expected_fix":"SELECT * FROM users WHERE deleted IS NULL","test":"-- returns rows where deleted IS NULL","causal_note":"NULL = NULL is NULL (not TRUE). Fix uses IS NULL — SQL's correct null comparison, a causal difference in evaluation semantics."},
+
+    {"id":"sh-unquoted-01","language":"bash","bug_type":"security","utterance":"Fix the script — the variable is unquoted, causing word splitting","buggy_code":"backup_dir=\"/path/to/files\"\nrm -rf $backup_dir","expected_fix":"backup_dir=\"/path/to/files\"\nrm -rf \"$backup_dir\"","test":"# rm -rf handles paths with spaces correctly","causal_note":"Unquoted variable causes word splitting. Fix adds quotes — a causal difference in shell parsing."},
+    {"id":"sh-command-injection-01","language":"bash","bug_type":"security","utterance":"Fix the script — user input is evaluated as a command","buggy_code":"filename=$1\ncat $filename","expected_fix":"filename=\"$1\"\ncat -- \"$filename\"","test":"# cat works on files with special characters","causal_note":"Unquoted user input passed to cat. Fix quotes the variable and uses -- to prevent flag injection — a causal change in input handling."},
+
+    {"id":"lua-nil-01","language":"lua","bug_type":"null_reference","utterance":"Fix get_name — it errors when the table is nil","buggy_code":"function get_name(user)\n    return user.name\nend","expected_fix":"function get_name(user)\n    if user == nil then return nil end\n    return user.name\nend","test":"-- assert(get_name(nil) == nil)","causal_note":"Nil table access errors. Fix adds a nil guard."},
+    {"id":"lua-off-by-one-01","language":"lua","bug_type":"off_by_one","utterance":"Fix sumArray — off-by-one in the loop","buggy_code":"function sumArray(arr)\n    local total = 0\n    for i = 1, #arr - 1 do\n        total = total + arr[i]\n    end\n    return total\nend","expected_fix":"function sumArray(arr)\n    local total = 0\n    for i = 1, #arr do\n        total = total + arr[i]\n    end\n    return total\nend","test":"-- assert(sumArray({1,2,3}) == 6)","causal_note":"#arr - 1 skips the last element."},
+
+    {"id":"cs-null-01","language":"csharp","bug_type":"null_reference","utterance":"Fix GetName — it throws NullReferenceException when user is null","buggy_code":"string GetName(User user) {\n    return user.Name;\n}","expected_fix":"string GetName(User user) {\n    return user?.Name ?? \"\";\n}","test":"// Assert.Equal(\"\", GetName(null))","causal_note":"NullReferenceException on null access. Fix adds ?. null-conditional and ?? null-coalescing."},
+    {"id":"cs-off-by-one-01","language":"csharp","bug_type":"off_by_one","utterance":"Fix SumArray — it skips the last element","buggy_code":"int SumArray(int[] arr) {\n    int total = 0;\n    for (int i = 0; i < arr.Length - 1; i++) {\n        total += arr[i];\n    }\n    return total;\n}","expected_fix":"int SumArray(int[] arr) {\n    return arr.Sum();\n}","test":"// Assert.Equal(6, SumArray(new int[]{1,2,3}))","causal_note":"Off-by-one: arr.Length - 1 misses the last. Fix uses LINQ .Sum()."},
+
+    {"id":"pl-off-by-one-01","language":"perl","bug_type":"off_by_one","utterance":"Fix the sum function — it skips the last element","buggy_code":"sub sum {\n    my $total = 0;\n    for my $i (0 .. $#_ - 1) {\n        $total += $_[$i];\n    }\n    return $total;\n}","expected_fix":"sub sum {\n    my $total = 0;\n    $total += $_ for @_;\n    return $total;\n}","test":"# use Test::More; is(sum(1,2,3), 6);","causal_note":"Off-by-one: $#_ - 1 skips the last index. Fix uses idiomatic Perl iteration."}
+  ]
+}

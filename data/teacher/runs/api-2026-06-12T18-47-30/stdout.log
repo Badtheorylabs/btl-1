@@ -1,0 +1,80 @@
+Loading and expanding specs...
+  4179 total tasks (~12537 rows)
+  depth 0: 93 tasks
+  depth 1: 2000 tasks
+  depth 2: 2000 tasks
+  depth 3: 83 tasks
+  depth 4: 3 tasks
+
+Generating real traces via DeepSeek V4 Flash with GPT-4o mini fallback...
+  concurrency=128, max_tokens=2048, deepseek_budget=$1.5000
+  100/4179 tasks done, running cost: $0.0323 (deepseek $0.0323, openai $0.0000), rows: 189/300, incomplete responses: 65, failed calls: 0
+  50/4179 tasks done, running cost: $0.0389 (deepseek $0.0389, openai $0.0000), rows: 219/150, incomplete responses: 72, failed calls: 0
+  150/4179 tasks done, running cost: $0.0947 (deepseek $0.0947, openai $0.0000), rows: 526/450, incomplete responses: 168, failed calls: 0
+  200/4179 tasks done, running cost: $0.1053 (deepseek $0.1053, openai $0.0000), rows: 576/600, incomplete responses: 190, failed calls: 0
+  250/4179 tasks done, running cost: $0.1277 (deepseek $0.1277, openai $0.0000), rows: 706/750, incomplete responses: 226, failed calls: 0
+  350/4179 tasks done, running cost: $0.1468 (deepseek $0.1468, openai $0.0000), rows: 836/1050, incomplete responses: 249, failed calls: 0
+  300/4179 tasks done, running cost: $0.1561 (deepseek $0.1561, openai $0.0000), rows: 891/900, incomplete responses: 263, failed calls: 0
+  450/4179 tasks done, running cost: $0.1942 (deepseek $0.1942, openai $0.0000), rows: 1126/1350, incomplete responses: 320, failed calls: 0
+  400/4179 tasks done, running cost: $0.2056 (deepseek $0.2056, openai $0.0000), rows: 1185/1200, incomplete responses: 341, failed calls: 0
+  500/4179 tasks done, running cost: $0.2276 (deepseek $0.2276, openai $0.0000), rows: 1303/1500, incomplete responses: 384, failed calls: 0
+  550/4179 tasks done, running cost: $0.2540 (deepseek $0.2540, openai $0.0000), rows: 1459/1650, incomplete responses: 425, failed calls: 0
+  650/4179 tasks done, running cost: $0.2686 (deepseek $0.2686, openai $0.0000), rows: 1548/1950, incomplete responses: 443, failed calls: 0
+  600/4179 tasks done, running cost: $0.2899 (deepseek $0.2899, openai $0.0000), rows: 1682/1800, incomplete responses: 471, failed calls: 0
+  700/4179 tasks done, running cost: $0.3005 (deepseek $0.3005, openai $0.0000), rows: 1747/2100, incomplete responses: 487, failed calls: 0
+  750/4179 tasks done, running cost: $0.3243 (deepseek $0.3243, openai $0.0000), rows: 1900/2250, incomplete responses: 517, failed calls: 0
+  800/4179 tasks done, running cost: $0.3677 (deepseek $0.3677, openai $0.0000), rows: 2147/2400, incomplete responses: 587, failed calls: 0
+  850/4179 tasks done, running cost: $0.3716 (deepseek $0.3716, openai $0.0000), rows: 2171/2550, incomplete responses: 595, failed calls: 0
+  900/4179 tasks done, running cost: $0.3845 (deepseek $0.3845, openai $0.0000), rows: 2254/2700, incomplete responses: 616, failed calls: 0
+  950/4179 tasks done, running cost: $0.3952 (deepseek $0.3952, openai $0.0000), rows: 2324/2850, incomplete responses: 630, failed calls: 0
+  1000/4179 tasks done, running cost: $0.4231 (deepseek $0.4231, openai $0.0000), rows: 2497/3000, incomplete responses: 673, failed calls: 0
+  1050/4179 tasks done, running cost: $0.4442 (deepseek $0.4442, openai $0.0000), rows: 2622/3150, incomplete responses: 709, failed calls: 0
+  1100/4179 tasks done, running cost: $0.4641 (deepseek $0.4641, openai $0.0000), rows: 2751/3300, incomplete responses: 740, failed calls: 0
+  1150/4179 tasks done, running cost: $0.4650 (deepseek $0.4650, openai $0.0000), rows: 2756/3450, incomplete responses: 742, failed calls: 0
+  1250/4179 tasks done, running cost: $0.5007 (deepseek $0.5007, openai $0.0000), rows: 2983/3750, incomplete responses: 791, failed calls: 0
+  1200/4179 tasks done, running cost: $0.5094 (deepseek $0.5094, openai $0.0000), rows: 3032/3600, incomplete responses: 806, failed calls: 0
+  1300/4179 tasks done, running cost: $0.5370 (deepseek $0.5370, openai $0.0000), rows: 3196/3900, incomplete responses: 852, failed calls: 0
+  1350/4179 tasks done, running cost: $0.5607 (deepseek $0.5607, openai $0.0000), rows: 3346/4050, incomplete responses: 879, failed calls: 0
+  1400/4179 tasks done, running cost: $0.5734 (deepseek $0.5734, openai $0.0000), rows: 3417/4200, incomplete responses: 902, failed calls: 0
+  1450/4179 tasks done, running cost: $0.5894 (deepseek $0.5894, openai $0.0000), rows: 3530/4350, incomplete responses: 917, failed calls: 0
+  1500/4179 tasks done, running cost: $0.6047 (deepseek $0.6047, openai $0.0000), rows: 3626/4500, incomplete responses: 941, failed calls: 0
+  1550/4179 tasks done, running cost: $0.6422 (deepseek $0.6422, openai $0.0000), rows: 3859/4650, incomplete responses: 994, failed calls: 0
+  1600/4179 tasks done, running cost: $0.6589 (deepseek $0.6589, openai $0.0000), rows: 3957/4800, incomplete responses: 1017, failed calls: 0
+  1700/4179 tasks done, running cost: $0.6789 (deepseek $0.6789, openai $0.0000), rows: 4087/5100, incomplete responses: 1047, failed calls: 0
+  1650/4179 tasks done, running cost: $0.6852 (deepseek $0.6852, openai $0.0000), rows: 4126/4950, incomplete responses: 1055, failed calls: 0
+  1750/4179 tasks done, running cost: $0.7049 (deepseek $0.7049, openai $0.0000), rows: 4252/5250, incomplete responses: 1083, failed calls: 0
+  1800/4179 tasks done, running cost: $0.7279 (deepseek $0.7279, openai $0.0000), rows: 4394/5400, incomplete responses: 1116, failed calls: 0
+  1850/4179 tasks done, running cost: $0.7563 (deepseek $0.7563, openai $0.0000), rows: 4577/5550, incomplete responses: 1154, failed calls: 0
+  1900/4179 tasks done, running cost: $0.7786 (deepseek $0.7786, openai $0.0000), rows: 4719/5700, incomplete responses: 1184, failed calls: 0
+  1950/4179 tasks done, running cost: $0.7946 (deepseek $0.7946, openai $0.0000), rows: 4808/5850, incomplete responses: 1213, failed calls: 0
+  2000/4179 tasks done, running cost: $0.8239 (deepseek $0.8239, openai $0.0000), rows: 4988/6000, incomplete responses: 1252, failed calls: 0
+  2050/4179 tasks done, running cost: $0.8279 (deepseek $0.8279, openai $0.0000), rows: 5004/6150, incomplete responses: 1261, failed calls: 0
+  2100/4179 tasks done, running cost: $0.8635 (deepseek $0.8635, openai $0.0000), rows: 5180/6300, incomplete responses: 1322, failed calls: 0
+  2150/4179 tasks done, running cost: $0.8727 (deepseek $0.8727, openai $0.0000), rows: 5217/6450, incomplete responses: 1342, failed calls: 0
+  2200/4179 tasks done, running cost: $0.8903 (deepseek $0.8903, openai $0.0000), rows: 5290/6600, incomplete responses: 1377, failed calls: 0
+  2250/4179 tasks done, running cost: $0.9347 (deepseek $0.9347, openai $0.0000), rows: 5488/6750, incomplete responses: 1465, failed calls: 0
+  2300/4179 tasks done, running cost: $0.9599 (deepseek $0.9599, openai $0.0000), rows: 5606/6900, incomplete responses: 1514, failed calls: 0
+  2350/4179 tasks done, running cost: $0.9650 (deepseek $0.9650, openai $0.0000), rows: 5632/7050, incomplete responses: 1523, failed calls: 0
+  2400/4179 tasks done, running cost: $0.9798 (deepseek $0.9798, openai $0.0000), rows: 5715/7200, incomplete responses: 1543, failed calls: 0
+  2450/4179 tasks done, running cost: $1.0167 (deepseek $1.0167, openai $0.0000), rows: 5888/7350, incomplete responses: 1611, failed calls: 0
+  2500/4179 tasks done, running cost: $1.0477 (deepseek $1.0477, openai $0.0000), rows: 6021/7500, incomplete responses: 1676, failed calls: 0
+  2550/4179 tasks done, running cost: $1.0730 (deepseek $1.0730, openai $0.0000), rows: 6137/7650, incomplete responses: 1718, failed calls: 0
+  2600/4179 tasks done, running cost: $1.0804 (deepseek $1.0804, openai $0.0000), rows: 6170/7800, incomplete responses: 1732, failed calls: 0
+  2650/4179 tasks done, running cost: $1.0907 (deepseek $1.0907, openai $0.0000), rows: 6221/7950, incomplete responses: 1751, failed calls: 0
+  2700/4179 tasks done, running cost: $1.1156 (deepseek $1.1156, openai $0.0000), rows: 6353/8100, incomplete responses: 1789, failed calls: 0
+  2750/4179 tasks done, running cost: $1.1543 (deepseek $1.1543, openai $0.0000), rows: 6515/8250, incomplete responses: 1869, failed calls: 0
+  2800/4179 tasks done, running cost: $1.1646 (deepseek $1.1646, openai $0.0000), rows: 6574/8400, incomplete responses: 1882, failed calls: 0
+  2850/4179 tasks done, running cost: $1.2044 (deepseek $1.2044, openai $0.0000), rows: 6759/8550, incomplete responses: 1955, failed calls: 0
+  2900/4179 tasks done, running cost: $1.2093 (deepseek $1.2093, openai $0.0000), rows: 6780/8700, incomplete responses: 1968, failed calls: 0
+  2950/4179 tasks done, running cost: $1.2491 (deepseek $1.2491, openai $0.0000), rows: 6977/8850, incomplete responses: 2029, failed calls: 0
+  3000/4179 tasks done, running cost: $1.2633 (deepseek $1.2633, openai $0.0000), rows: 7049/9000, incomplete responses: 2051, failed calls: 0
+  3050/4179 tasks done, running cost: $1.2903 (deepseek $1.2903, openai $0.0000), rows: 7172/9150, incomplete responses: 2100, failed calls: 0
+  3100/4179 tasks done, running cost: $1.3004 (deepseek $1.3004, openai $0.0000), rows: 7224/9300, incomplete responses: 2115, failed calls: 0
+  3150/4179 tasks done, running cost: $1.3276 (deepseek $1.3276, openai $0.0000), rows: 7342/9450, incomplete responses: 2170, failed calls: 0
+  3200/4179 tasks done, running cost: $1.3813 (deepseek $1.3813, openai $0.0000), rows: 7598/9600, incomplete responses: 2262, failed calls: 0
+  3250/4179 tasks done, running cost: $1.3947 (deepseek $1.3947, openai $0.0000), rows: 7654/9750, incomplete responses: 2291, failed calls: 0
+  3300/4179 tasks done, running cost: $1.4046 (deepseek $1.4046, openai $0.0000), rows: 7691/9900, incomplete responses: 2313, failed calls: 0
+  3350/4179 tasks done, running cost: $1.4156 (deepseek $1.4156, openai $0.0000), rows: 7738/10050, incomplete responses: 2335, failed calls: 0
+  3400/4179 tasks done, running cost: $1.4392 (deepseek $1.4392, openai $0.0000), rows: 7855/10200, incomplete responses: 2378, failed calls: 0
+  3450/4179 tasks done, running cost: $1.4833 (deepseek $1.4833, openai $0.0000), rows: 8066/10350, incomplete responses: 2452, failed calls: 0
+  3500/4179 tasks done, running cost: $1.4920 (deepseek $1.4920, openai $0.0000), rows: 8107/10500, incomplete responses: 2468, failed calls: 0

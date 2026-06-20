@@ -1,0 +1,20 @@
+{
+  "name": "crossos",
+  "kind": "portable_steps",
+  "data_path_env": "BTL_CROSSOS_PATH",
+  "default_path": "eval/data/crossos.jsonl",
+  "prompt_selectors": [
+    "prompt",
+    "question",
+    "query",
+    "input",
+    "instruction"
+  ],
+  "expected_selectors": [
+    "steps",
+    "expected",
+    "tool_calls",
+    "answer"
+  ],
+  "allow_refusal": true
+}

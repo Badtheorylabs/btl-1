@@ -1,0 +1,53 @@
+{
+  "depth": 4,
+  "label": "Repo repair",
+  "description": "Navigate a multi-file project, diagnose the failure, make cross-file edits, run validation. The causal structure is distributed across files — the model must trace the symptom to its root cause through a dependency graph.",
+  "generation": {
+    "per_project": 8,
+    "variant_contexts": ["billing", "checkout", "analytics", "support", "inventory", "platform", "onboarding", "payments", "ops", "security", "finance", "compliance"]
+  },
+  "projects": [
+    {
+      "id": "py-todo-app-01",
+      "language": "python",
+      "domain": "web_app",
+      "utterance": "The todo app crashes when marking a task as complete. The button click handler calls complete_task but the function references a non-existent db variable. Fix the bug.",
+      "files": [
+        {"path": "app.py", "content": "from flask import Flask, request, jsonify\nfrom tasks import complete_task\n\napp = Flask(__name__)\n\n@app.route('/tasks/<int:task_id>/complete', methods=['POST'])\ndef mark_complete(task_id):\n    result = complete_task(task_id)\n    return jsonify(result)"},
+        {"path": "tasks.py", "content": "def complete_task(task_id):\n    task = db.tasks.find_one({'id': task_id})\n    if not task:\n        return {'error': 'Task not found'}\n    db.tasks.update_one({'id': task_id}, {'$set': {'done': True}})\n    return {'ok': True}"},
+        {"path": "database.py", "content": "import sqlite3\n\nconn = sqlite3.connect('todos.db', check_same_thread=False)\ndb = conn.cursor()"}
+      ],
+      "expected_fix_file": "tasks.py",
+      "expected_fix_content": "from database import db\n\ndef complete_task(task_id):\n    task = db.tasks.find_one({'id': task_id})\n    if not task:\n        return {'error': 'Task not found'}\n    db.tasks.update_one({'id': task_id}, {'$set': {'done': True}})\n    return {'ok': True}",
+      "test": "The import statement for db is missing in tasks.py. Add 'from database import db' at the top.",
+      "causal_note": "Cross-file dependency bug. The db variable is defined in database.py but tasks.py references it without importing. Fix requires understanding the module dependency graph."
+    },
+    {
+      "id": "py-cli-tool-01",
+      "language": "python",
+      "domain": "cli_tool",
+      "utterance": "The CSV merge tool produces wrong output when input files have different column orders. The bug is that merge_rows assumes both rows have the same key order but zip merges by position, not by column name. Fix it.",
+      "files": [
+        {"path": "merge.py", "content": "import csv\nimport sys\n\ndef read_csv(path):\n    with open(path) as f:\n        reader = csv.DictReader(f)\n        return [row for row in reader]\n\ndef merge_rows(row_a, row_b):\n    merged = {}\n    for k, v in zip(row_a.keys(), row_a.values()):\n        merged[k] = v\n    for k, v in zip(row_b.keys(), row_b.values()):\n        if k not in merged:\n            merged[k] = v\n    return merged\n\ndef main(path_a, path_b, output):\n    rows_a = read_csv(path_a)\n    rows_b = read_csv(path_b)\n    with open(output, 'w', newline='') as f:\n        writer = csv.DictWriter(f, fieldnames=rows_a[0].keys() | rows_b[0].keys())\n        writer.writeheader()\n        for a, b in zip(rows_a, rows_b):\n            writer.writerow(merge_rows(a, b))"},
+        {"path": "data_a.csv", "content": "name,age,email\nAlice,30,alice@x.com\nBob,25,bob@y.com"},
+        {"path": "data_b.csv", "content": "email,name,age\nalice@x.com,Alice,30\nbob@y.com,Bob,25"}
+      ],
+      "expected_fix_content": "def merge_rows(row_a, row_b):\n    merged = dict(row_a)\n    for k, v in row_b.items():\n        if k not in merged:\n            merged[k] = v\n    return merged",
+      "test": "When data_a.csv has columns name,age,email and data_b.csv has columns email,name,age, merging should produce correct combined rows.",
+      "causal_note": "The merge_rows function uses zip(row_a.keys(), row_a.values()) which assumes key order matches value order. Using dict(row_a) and row_b.items() is order-independent. The bug is a wrong algorithm choice."
+    },
+    {
+      "id": "py-api-service-01",
+      "language": "python",
+      "domain": "api_service",
+      "utterance": "The rate limiter is not working. Requests are not being throttled even when the limit is exceeded. The bug is that the decorator order is wrong — the route decorator is applied before the rate_limit decorator, so rate limiting never triggers.",
+      "files": [
+        {"path": "server.py", "content": "from flask import Flask, request, jsonify\nfrom rate_limit import rate_limit\n\napp = Flask(__name__)\n\n@rate_limit(max_requests=5, window_seconds=60)\n@app.route('/api/data')\ndef get_data():\n    return jsonify({'data': 'important'})"},
+        {"path": "rate_limit.py", "content": "from functools import wraps\nfrom time import time\n\n_requests = {}\n\ndef rate_limit(max_requests=10, window_seconds=60):\n    def decorator(f):\n        @wraps(f)\n        def wrapper(*args, **kwargs):\n            key = request.remote_addr\n            now = time()\n            if key not in _requests:\n                _requests[key] = []\n            _requests[key] = [t for t in _requests[key] if now - t < window_seconds]\n            if len(_requests[key]) >= max_requests:\n                return {'error': 'rate limit exceeded'}, 429\n            _requests[key].append(now)\n            return f(*args, **kwargs)\n        return wrapper\n    return decorator"}
+      ],
+      "expected_fix_content": "@app.route('/api/data')\n@rate_limit(max_requests=5, window_seconds=60)\ndef get_data():\n    return jsonify({'data': 'important'})",
+      "test": "After 5 rapid requests to /api/data, the 6th request should return a 429 rate limit error.",
+      "causal_note": "Decorator ordering bug. In Flask, @app.route must be the outermost decorator. The rate_limit decorator is applied after routing, so it never intercepts requests. Fix swaps the decorator order."
+    }
+  ]
+}

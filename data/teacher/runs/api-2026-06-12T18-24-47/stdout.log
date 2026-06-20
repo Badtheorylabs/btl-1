@@ -1,0 +1,33 @@
+Loading and expanding specs...
+  4179 total tasks (~12537 rows)
+  depth 0: 93 tasks
+  depth 1: 2000 tasks
+  depth 2: 2000 tasks
+  depth 3: 83 tasks
+  depth 4: 3 tasks
+
+Generating real traces via DeepSeek V4 Flash...
+  concurrency=128, max_tokens=2048
+  50/4179 tasks done, running cost: $0.0000, rows: 0/150, incomplete responses: 0, failed calls: 296
+  100/4179 tasks done, running cost: $0.0000, rows: 0/300, incomplete responses: 0, failed calls: 365
+  150/4179 tasks done, running cost: $0.0000, rows: 0/450, incomplete responses: 0, failed calls: 665
+  200/4179 tasks done, running cost: $0.0000, rows: 0/600, incomplete responses: 0, failed calls: 707
+  250/4179 tasks done, running cost: $0.0000, rows: 0/750, incomplete responses: 0, failed calls: 756
+  300/4179 tasks done, running cost: $0.0000, rows: 0/900, incomplete responses: 0, failed calls: 1045
+  350/4179 tasks done, running cost: $0.0000, rows: 0/1050, incomplete responses: 0, failed calls: 1111
+  400/4179 tasks done, running cost: $0.0000, rows: 0/1200, incomplete responses: 0, failed calls: 1412
+  450/4179 tasks done, running cost: $0.0000, rows: 0/1350, incomplete responses: 0, failed calls: 1445
+  500/4179 tasks done, running cost: $0.0000, rows: 0/1500, incomplete responses: 0, failed calls: 1522
+  550/4179 tasks done, running cost: $0.0000, rows: 0/1650, incomplete responses: 0, failed calls: 1823
+  600/4179 tasks done, running cost: $0.0000, rows: 0/1800, incomplete responses: 0, failed calls: 1872
+  650/4179 tasks done, running cost: $0.0000, rows: 0/1950, incomplete responses: 0, failed calls: 2166
+  700/4179 tasks done, running cost: $0.0000, rows: 0/2100, incomplete responses: 0, failed calls: 2227
+  750/4179 tasks done, running cost: $0.0000, rows: 0/2250, incomplete responses: 0, failed calls: 2271
+  800/4179 tasks done, running cost: $0.0000, rows: 0/2400, incomplete responses: 0, failed calls: 2583
+  850/4179 tasks done, running cost: $0.0000, rows: 0/2550, incomplete responses: 0, failed calls: 2635
+  900/4179 tasks done, running cost: $0.0000, rows: 0/2700, incomplete responses: 0, failed calls: 2928
+  950/4179 tasks done, running cost: $0.0000, rows: 0/2850, incomplete responses: 0, failed calls: 2976
+  1000/4179 tasks done, running cost: $0.0000, rows: 0/3000, incomplete responses: 0, failed calls: 3019
+  1050/4179 tasks done, running cost: $0.0000, rows: 0/3150, incomplete responses: 0, failed calls: 3331
+  1100/4179 tasks done, running cost: $0.0000, rows: 0/3300, incomplete responses: 0, failed calls: 3393
+  1150/4179 tasks done, running cost: $0.0000, rows: 0/3450, incomplete responses: 0, failed calls: 3565

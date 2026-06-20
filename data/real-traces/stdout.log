@@ -1,0 +1,100 @@
+Loading and expanding specs...
+  4179 total tasks (~12537 rows)
+  depth 0: 93 tasks
+  depth 1: 2000 tasks
+  depth 2: 2000 tasks
+  depth 3: 83 tasks
+  depth 4: 3 tasks
+
+Generating real traces via GPT-4o mini (DeepSeek disabled via BTL_FORCE_OPENAI)...
+  concurrency=128, max_tokens=2048, model=gpt-4o-mini
+  saving incrementally to:
+    train: C:\Users\pc\Downloads\btl\btl-1\data\real-traces\train.jsonl
+    eval:  C:\Users\pc\Downloads\btl\btl-1\data\real-traces\eval.jsonl
+  100/4179 tasks done, cost: $0.0045 (ds: $0.0000, oai: $0.0045), incomplete: 0, failed: 0
+  50/4179 tasks done, cost: $0.0093 (ds: $0.0000, oai: $0.0093), incomplete: 0, failed: 0
+  150/4179 tasks done, cost: $0.0210 (ds: $0.0000, oai: $0.0210), incomplete: 0, failed: 0
+  200/4179 tasks done, cost: $0.0248 (ds: $0.0000, oai: $0.0248), incomplete: 0, failed: 0
+  250/4179 tasks done, cost: $0.0306 (ds: $0.0000, oai: $0.0306), incomplete: 0, failed: 0
+  300/4179 tasks done, cost: $0.0433 (ds: $0.0000, oai: $0.0433), incomplete: 0, failed: 0
+  350/4179 tasks done, cost: $0.0483 (ds: $0.0000, oai: $0.0483), incomplete: 0, failed: 0
+  450/4179 tasks done, cost: $0.0548 (ds: $0.0000, oai: $0.0548), incomplete: 0, failed: 0
+  400/4179 tasks done, cost: $0.0659 (ds: $0.0000, oai: $0.0659), incomplete: 0, failed: 0
+  500/4179 tasks done, cost: $0.0669 (ds: $0.0000, oai: $0.0669), incomplete: 0, failed: 0
+  600/4179 tasks done, cost: $0.0752 (ds: $0.0000, oai: $0.0752), incomplete: 0, failed: 0
+  550/4179 tasks done, cost: $0.0772 (ds: $0.0000, oai: $0.0772), incomplete: 0, failed: 0
+  700/4179 tasks done, cost: $0.0839 (ds: $0.0000, oai: $0.0839), incomplete: 0, failed: 0
+  650/4179 tasks done, cost: $0.0871 (ds: $0.0000, oai: $0.0871), incomplete: 0, failed: 0
+  800/4179 tasks done, cost: $0.1023 (ds: $0.0000, oai: $0.1023), incomplete: 0, failed: 0
+  750/4179 tasks done, cost: $0.1027 (ds: $0.0000, oai: $0.1027), incomplete: 0, failed: 0
+  850/4179 tasks done, cost: $0.1082 (ds: $0.0000, oai: $0.1082), incomplete: 0, failed: 0
+  900/4179 tasks done, cost: $0.1152 (ds: $0.0000, oai: $0.1152), incomplete: 0, failed: 0
+  950/4179 tasks done, cost: $0.1166 (ds: $0.0000, oai: $0.1166), incomplete: 0, failed: 0
+  1100/4179 tasks done, cost: $0.1341 (ds: $0.0000, oai: $0.1341), incomplete: 0, failed: 0
+  1050/4179 tasks done, cost: $0.1354 (ds: $0.0000, oai: $0.1354), incomplete: 0, failed: 0
+  1000/4179 tasks done, cost: $0.1372 (ds: $0.0000, oai: $0.1372), incomplete: 0, failed: 0
+  1200/4179 tasks done, cost: $0.1572 (ds: $0.0000, oai: $0.1572), incomplete: 0, failed: 0
+  1300/4179 tasks done, cost: $0.1598 (ds: $0.0000, oai: $0.1598), incomplete: 0, failed: 0
+  1150/4179 tasks done, cost: $0.1644 (ds: $0.0000, oai: $0.1644), incomplete: 0, failed: 0
+  1250/4179 tasks done, cost: $0.1715 (ds: $0.0000, oai: $0.1715), incomplete: 0, failed: 0
+  1400/4179 tasks done, cost: $0.1793 (ds: $0.0000, oai: $0.1793), incomplete: 0, failed: 0
+  1450/4179 tasks done, cost: $0.1799 (ds: $0.0000, oai: $0.1799), incomplete: 0, failed: 0
+  1350/4179 tasks done, cost: $0.1840 (ds: $0.0000, oai: $0.1840), incomplete: 0, failed: 0
+  1500/4179 tasks done, cost: $0.1859 (ds: $0.0000, oai: $0.1859), incomplete: 0, failed: 0
+  1550/4179 tasks done, cost: $0.1932 (ds: $0.0000, oai: $0.1932), incomplete: 0, failed: 0
+  1600/4179 tasks done, cost: $0.1993 (ds: $0.0000, oai: $0.1993), incomplete: 0, failed: 0
+  1650/4179 tasks done, cost: $0.2040 (ds: $0.0000, oai: $0.2040), incomplete: 0, failed: 0
+  1700/4179 tasks done, cost: $0.2148 (ds: $0.0000, oai: $0.2148), incomplete: 0, failed: 0
+  1750/4179 tasks done, cost: $0.2187 (ds: $0.0000, oai: $0.2187), incomplete: 0, failed: 0
+  1850/4179 tasks done, cost: $0.2328 (ds: $0.0000, oai: $0.2328), incomplete: 0, failed: 0
+  1800/4179 tasks done, cost: $0.2353 (ds: $0.0000, oai: $0.2353), incomplete: 0, failed: 0
+  1900/4179 tasks done, cost: $0.2413 (ds: $0.0000, oai: $0.2413), incomplete: 0, failed: 0
+  1950/4179 tasks done, cost: $0.2451 (ds: $0.0000, oai: $0.2451), incomplete: 0, failed: 0
+  2000/4179 tasks done, cost: $0.2528 (ds: $0.0000, oai: $0.2528), incomplete: 0, failed: 0
+  2050/4179 tasks done, cost: $0.2537 (ds: $0.0000, oai: $0.2537), incomplete: 0, failed: 0
+  2100/4179 tasks done, cost: $0.2761 (ds: $0.0000, oai: $0.2761), incomplete: 0, failed: 0
+  2150/4179 tasks done, cost: $0.2810 (ds: $0.0000, oai: $0.2810), incomplete: 0, failed: 0
+  2200/4179 tasks done, cost: $0.2866 (ds: $0.0000, oai: $0.2866), incomplete: 0, failed: 0
+  2300/4179 tasks done, cost: $0.2987 (ds: $0.0000, oai: $0.2987), incomplete: 0, failed: 0
+  2350/4179 tasks done, cost: $0.3022 (ds: $0.0000, oai: $0.3022), incomplete: 0, failed: 0
+  2250/4179 tasks done, cost: $0.3080 (ds: $0.0000, oai: $0.3080), incomplete: 0, failed: 0
+  2400/4179 tasks done, cost: $0.3151 (ds: $0.0000, oai: $0.3151), incomplete: 0, failed: 0
+  2450/4179 tasks done, cost: $0.3346 (ds: $0.0000, oai: $0.3346), incomplete: 0, failed: 0
+  2500/4179 tasks done, cost: $0.3379 (ds: $0.0000, oai: $0.3379), incomplete: 0, failed: 0
+  2550/4179 tasks done, cost: $0.3419 (ds: $0.0000, oai: $0.3419), incomplete: 0, failed: 0
+  2600/4179 tasks done, cost: $0.3433 (ds: $0.0000, oai: $0.3433), incomplete: 0, failed: 0
+  2650/4179 tasks done, cost: $0.3627 (ds: $0.0000, oai: $0.3627), incomplete: 0, failed: 0
+  2700/4179 tasks done, cost: $0.3684 (ds: $0.0000, oai: $0.3684), incomplete: 0, failed: 0
+  2750/4179 tasks done, cost: $0.3714 (ds: $0.0000, oai: $0.3714), incomplete: 0, failed: 0
+  2800/4179 tasks done, cost: $0.3838 (ds: $0.0000, oai: $0.3838), incomplete: 0, failed: 0
+  2900/4179 tasks done, cost: $0.3972 (ds: $0.0000, oai: $0.3972), incomplete: 0, failed: 0
+  2850/4179 tasks done, cost: $0.3974 (ds: $0.0000, oai: $0.3974), incomplete: 0, failed: 0
+  2950/4179 tasks done, cost: $0.4005 (ds: $0.0000, oai: $0.4005), incomplete: 0, failed: 0
+  3050/4179 tasks done, cost: $0.4221 (ds: $0.0000, oai: $0.4221), incomplete: 0, failed: 0
+  3100/4179 tasks done, cost: $0.4319 (ds: $0.0000, oai: $0.4319), incomplete: 0, failed: 0
+  3000/4179 tasks done, cost: $0.4379 (ds: $0.0000, oai: $0.4379), incomplete: 0, failed: 0
+  3150/4179 tasks done, cost: $0.4418 (ds: $0.0000, oai: $0.4418), incomplete: 0, failed: 0
+  3200/4179 tasks done, cost: $0.4535 (ds: $0.0000, oai: $0.4535), incomplete: 0, failed: 0
+  3250/4179 tasks done, cost: $0.4581 (ds: $0.0000, oai: $0.4581), incomplete: 0, failed: 0
+  3300/4179 tasks done, cost: $0.4624 (ds: $0.0000, oai: $0.4624), incomplete: 0, failed: 0
+  3350/4179 tasks done, cost: $0.4771 (ds: $0.0000, oai: $0.4771), incomplete: 0, failed: 0
+  3400/4179 tasks done, cost: $0.4793 (ds: $0.0000, oai: $0.4793), incomplete: 0, failed: 0
+  3500/4179 tasks done, cost: $0.4924 (ds: $0.0000, oai: $0.4924), incomplete: 0, failed: 0
+  3450/4179 tasks done, cost: $0.4945 (ds: $0.0000, oai: $0.4945), incomplete: 0, failed: 0
+  3550/4179 tasks done, cost: $0.5185 (ds: $0.0000, oai: $0.5185), incomplete: 0, failed: 0
+  3600/4179 tasks done, cost: $0.5202 (ds: $0.0000, oai: $0.5202), incomplete: 0, failed: 0
+  3650/4179 tasks done, cost: $0.5247 (ds: $0.0000, oai: $0.5247), incomplete: 0, failed: 0
+  3750/4179 tasks done, cost: $0.5361 (ds: $0.0000, oai: $0.5361), incomplete: 0, failed: 0
+  3700/4179 tasks done, cost: $0.5414 (ds: $0.0000, oai: $0.5414), incomplete: 0, failed: 0
+  3800/4179 tasks done, cost: $0.5527 (ds: $0.0000, oai: $0.5527), incomplete: 0, failed: 0
+  3900/4179 tasks done, cost: $0.5602 (ds: $0.0000, oai: $0.5602), incomplete: 0, failed: 0
+  3850/4179 tasks done, cost: $0.5616 (ds: $0.0000, oai: $0.5616), incomplete: 0, failed: 0
+  3950/4179 tasks done, cost: $0.5746 (ds: $0.0000, oai: $0.5746), incomplete: 0, failed: 0
+  4000/4179 tasks done, cost: $0.5877 (ds: $0.0000, oai: $0.5877), incomplete: 0, failed: 0
+  4050/4179 tasks done, cost: $0.5895 (ds: $0.0000, oai: $0.5895), incomplete: 0, failed: 0
+  4150/4179 tasks done, cost: $0.6033 (ds: $0.0000, oai: $0.6033), incomplete: 0, failed: 0
+  4100/4179 tasks done, cost: $0.6038 (ds: $0.0000, oai: $0.6038), incomplete: 0, failed: 0
+
+Done. Generated 8358 rows at $0.6110 total (deepseek $0.0000, openai $0.6110)
+  train: C:\Users\pc\Downloads\btl\btl-1\data\real-traces\train.jsonl (7515 rows)
+  eval:  C:\Users\pc\Downloads\btl\btl-1\data\real-traces\eval.jsonl (843 rows)

@@ -1,0 +1,26 @@
+{
+  "name": "bfcl",
+  "kind": "steps",
+  "data_path_env": "BTL_BFCL_PATH",
+  "default_path": "eval/data/bfcl.jsonl",
+  "prompt_selectors": [
+    "prompt",
+    "question",
+    "query",
+    "input",
+    "instruction",
+    "user_query",
+    "messages[?role=user].content"
+  ],
+  "expected_selectors": [
+    "expected",
+    "answer",
+    "label",
+    "ground_truth",
+    "tool_calls",
+    "function_call",
+    "reference",
+    "messages[-1].content"
+  ],
+  "allow_refusal": true
+}

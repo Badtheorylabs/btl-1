@@ -1,0 +1,258 @@
+{
+  "depth": 1,
+  "label": "Single tool call",
+  "description": "Map a natural language utterance to one tool invocation with correct params",
+  "generation": {"per_tool": 200, "per_tool_shift": 50},
+  "tools": [
+    {
+      "tool": "file_search",
+      "params": {
+        "filename": {"type": "string", "description": "Name or partial name of the file"},
+        "ext": {"type": "string", "optional": true, "description": "File extension filter"},
+        "time": {"type": "string", "optional": true, "description": "Time range modifier"},
+        "folder": {"type": "string", "optional": true, "description": "Directory scope"}
+      },
+      "utterances": [
+        "Find the {filename} {ext}",
+        "Search for {filename} {ext} in my {folder}",
+        "Look up {ext} files named {filename} from {time}",
+        "Find {quantity} {filename} {ext} from {time}",
+        "Search my {folder} for {filename} {ext}"
+      ],
+      "pool": {
+        "filename": ["budget", "project_plan", "invoice", "report", "notes", "schedule", "proposal", "dataset", "log", "summary", "config", "readme", "draft", "minutes", "invoice_2025", "quarterly_review", "deploy_log", "error_trace"],
+        "ext": ["pdf", "xlsx", "docx", "txt", "json", "csv", "md", "log", "yaml", "xml", "py", "js", "ts"],
+        "time": ["last week", "yesterday", "this month", "March", "Q1", "today", "last month", "this quarter", "January", "this year"],
+        "folder": ["Documents", "Downloads", "Desktop", "Projects", "Reports", "Archive", "tmp", "backups"],
+        "quantity": ["a", "the", "all", "any", "every", "recent"]
+      },
+      "shift_axes": {
+        "lexical": ["filename", "ext", "folder", "quantity"],
+        "formatting": ["utterance_phrasing"],
+        "domain": ["folder"]
+      }
+    },
+    {
+      "tool": "read_file",
+      "params": {
+        "path": {"type": "string", "description": "Path to the file"},
+        "line_spec": {"type": "string", "optional": true, "description": "Line range specifier"}
+      },
+      "utterances": [
+        "Read the {filename} {ext}",
+        "Show me the contents of {filename}.{ext}",
+        "Read {line_spec} of {filename}.{ext}",
+        "Open {filename} {ext}",
+        "Display {filename}.{ext}"
+      ],
+      "pool": {
+        "filename": ["budget", "project_plan", "invoice", "report", "notes", "readme", "config", "log", "draft", "summary", "minutes", "todo", "proposal", "dataset", "manifest", "changelog"],
+        "ext": ["txt", "md", "json", "csv", "yaml", "xml", "py", "js", "ts", "log", "toml", "cfg"],
+        "line_spec": ["the first 10 lines", "the last 20 lines", "lines 5-15", "the whole file", "the first section", "lines 50-100", "just the header"]
+      },
+      "shift_axes": {
+        "lexical": ["filename", "ext"],
+        "formatting": ["utterance_phrasing", "line_spec"],
+        "domain": ["ext"]
+      }
+    },
+    {
+      "tool": "write_file",
+      "params": {
+        "path": {"type": "string", "description": "Path to write to"},
+        "content": {"type": "string", "description": "Content to write"},
+        "mode": {"type": "string", "optional": true, "description": "Write mode: write or append"}
+      },
+      "utterances": [
+        "Save this to {filename}.{ext}: {content}",
+        "Create {filename}.{ext} with {content}",
+        "Write {content} to {filename}.{ext}",
+        "Add {content} to {filename}.{ext}",
+        "Make a file called {filename}.{ext} containing {content}"
+      ],
+      "pool": {
+        "filename": ["notes", "todo", "draft", "summary", "minutes", "log", "output", "result", "list", "plan", "config", "index"],
+        "ext": ["txt", "md", "json", "csv", "log", "yaml", "toml"],
+        "content": ["the meeting summary", "my shopping list", "the research findings", "a draft response", "the config settings", "the pipeline output", "the error log", "the deployment notes", "the API response", "the benchmark results"]
+      },
+      "shift_axes": {
+        "lexical": ["filename", "ext", "content"],
+        "formatting": ["utterance_phrasing"],
+        "domain": ["ext", "content"]
+      }
+    },
+    {
+      "tool": "email",
+      "params": {
+        "to": {"type": "string", "description": "Recipient name or address"},
+        "subject": {"type": "string", "description": "Email subject line"},
+        "body": {"type": "string", "description": "Email body content"},
+        "attachments": {"type": "array", "optional": true, "description": "Attachment paths"}
+      },
+      "utterances": [
+        "Email {contact} about {subject}",
+        "Send an email to {contact} with {subject}",
+        "Forward the {attachment_type} to {contact}",
+        "Write an email to {contact} saying {body}",
+        "Send {subject} to {contact}"
+      ],
+      "pool": {
+        "contact": ["Alice", "Bob", "Carol", "the team", "my manager", "the client", "Hank", "support@example.com", "dev-team@co.io", "hi@substack.xyz"],
+        "subject": ["the report", "meeting notes", "Q3 update", "project timeline", "budget review", "weekly summary", "deploy confirmation", "feedback on PR"],
+        "body": ["Following up on our call.", "Please find the document attached.", "Let me know if you have questions.", "Here is the weekly summary.", "The build passed."],
+        "attachment_type": ["PDF", "spreadsheet", "report", "file", "image", "document"]
+      },
+      "shift_axes": {
+        "lexical": ["contact", "subject", "body"],
+        "formatting": ["utterance_phrasing"],
+        "domain": ["contact"]
+      }
+    },
+    {
+      "tool": "web_search",
+      "params": {
+        "query": {"type": "string", "description": "Search query string"}
+      },
+      "utterances": [
+        "Search the web for {topic}",
+        "Look up {topic} online",
+        "Find information about {topic}",
+        "Google {topic}",
+        "Search for {topic} from {timeframe}"
+      ],
+      "pool": {
+        "topic": ["AI funding news", "GPU benchmarks", "LLM reasoning evaluation", "vector databases", "causal inference papers", "Python 3.13 release", "Rust web frameworks", "PostgreSQL performance tuning", "neural compression methods", "tool-use agents", "quantization techniques", "MCP protocol"],
+        "timeframe": ["this week", "this month", "this year", "2026", "past 3 months", "recent", "this quarter"]
+      },
+      "shift_axes": {
+        "lexical": ["topic"],
+        "formatting": ["utterance_phrasing"],
+        "domain": ["topic"]
+      }
+    },
+    {
+      "tool": "browse",
+      "params": {
+        "url": {"type": "string", "description": "URL to fetch and extract"}
+      },
+      "utterances": [
+        "Open {url} and summarize it",
+        "Visit {url} and tell me what it says",
+        "Browse to {url}",
+        "Go to {url} and extract the main content",
+        "Read the page at {url}"
+      ],
+      "pool": {
+        "url": ["the first result", "the top link", "that article", "the Wikipedia page", "the GitHub repo", "the paper page", "the blog post"]
+      },
+      "shift_axes": {
+        "lexical": ["url"],
+        "formatting": ["utterance_phrasing"]
+      }
+    },
+    {
+      "tool": "clipboard",
+      "params": {
+        "action": {"type": "string", "enum": ["read", "write"], "description": "Clipboard operation"},
+        "content": {"type": "string", "optional": true, "description": "Content to write (write mode only)"}
+      },
+      "utterances": [
+        "Read what is on my clipboard",
+        "Check my clipboard contents",
+        "Copy this to my clipboard: {content}",
+        "Paste the current clipboard",
+        "Put {content} on my clipboard"
+      ],
+      "pool": {
+        "content": ["the URL I just copied", "the text I selected", "the code snippet", "the error message", "the commit hash"]
+      },
+      "shift_axes": {
+        "lexical": ["content"],
+        "formatting": ["utterance_phrasing"]
+      }
+    },
+    {
+      "tool": "shell_command",
+      "params": {
+        "command": {"type": "string", "description": "Shell command to execute"}
+      },
+      "utterances": [
+        "Run a command to {action} {target} {condition}",
+        "Shell: {action} {target} {location}",
+        "Execute: {action} {target}",
+        "Run {action} on {target} {condition}",
+        "Use the terminal to {action} {target}"
+      ],
+      "pool": {
+        "action": ["list all", "find", "count", "show", "sort", "filter", "get the size of", "delete", "back up", "move", "rename"],
+        "target": ["PDF files", "PNG images", "text files", "Python scripts", "JSON files", "log files", "temporary files", "duplicate files", "large files"],
+        "condition": ["larger than 10MB", "modified today", "older than a week", "containing error", "with .tmp extension", "not accessed in 30 days"],
+        "location": ["in Downloads", "in Documents", "in the current directory", "in /tmp", "in the project root", "in ~/Desktop"]
+      },
+      "shift_axes": {
+        "lexical": ["action", "target", "condition", "location"],
+        "formatting": ["utterance_phrasing"],
+        "domain": ["location"]
+      }
+    },
+    {
+      "tool": "notes",
+      "params": {
+        "action": {"type": "string", "enum": ["read", "write", "append"], "description": "Notes operation"},
+        "title": {"type": "string", "description": "Note title or key"},
+        "content": {"type": "string", "optional": true, "description": "Note content (write/append mode only)"}
+      },
+      "utterances": [
+        "Add {content} to my {title} notes",
+        "Write {content} in my {title} note",
+        "Show me my {title} notes",
+        "What is in my {title} notes",
+        "Append {content} to my {title} notes",
+        "Create a new note called {title} with {content}"
+      ],
+      "pool": {
+        "title": ["todo", "shopping list", "ideas", "meeting notes", "reading list", "projects", "reminders", "groceries", "code snippets", "papers to read"],
+        "content": ["buy milk", "finish the eval script", "read the paper on causal inference", "review PR #42", "set up CI pipeline", "write blog post draft", "update dependencies"]
+      },
+      "shift_axes": {
+        "lexical": ["title", "content"],
+        "formatting": ["utterance_phrasing"],
+        "domain": ["title"]
+      }
+    },
+    {
+      "tool": "reasoning",
+      "params": {
+        "question": {"type": "string", "description": "The reasoning question"},
+        "context": {"type": "string", "optional": true, "description": "Background context for reasoning"}
+      },
+      "utterances": [
+        "Think about this: {question}",
+        "Reason through this: {context}. {question}",
+        "Work through this step by step: {question}",
+        "Analyze: {question}",
+        "Given {context}, answer: {question}"
+      ],
+      "pool": {
+        "question": [
+          "What percentage of employees who completed training achieved high performance?",
+          "If the company forced everyone to train, what percentage would achieve high performance?",
+          "Given that all As are Bs and some Bs are Cs, can any As be Cs?",
+          "If we increase the learning rate, what happens to validation loss?",
+          "Does correlation between ad spend and revenue imply causation?"
+        ],
+        "context": [
+          "Given the causal chain Training -> Skill -> Performance",
+          "Given the fork Wealth -> Education and Wealth -> Income",
+          "Given the chain Learning Rate -> Convergence -> Test Accuracy",
+          "Given the confounder Season -> Ice Cream Sales and Season -> Drowning Incidents"
+        ]
+      },
+      "shift_axes": {
+        "lexical": ["question", "context"],
+        "formatting": ["utterance_phrasing"],
+        "domain": ["question", "context"]
+      }
+    }
+  ]
+}

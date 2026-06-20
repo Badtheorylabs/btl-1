@@ -1,0 +1,10 @@
+  DeepSeek budget cap reached: $1.5000 >= $1.5000; switching remaining calls to GPT-4o mini
+  task 3602 variant verbose via openai failed: OpenAI API key missing. Set OPENAI_API_KEY or BTL_OPENAI_API_KEY to enable GPT-4o mini fallback.
+Error: OpenAI API key missing. Set OPENAI_API_KEY or BTL_OPENAI_API_KEY to enable GPT-4o mini fallback.
+    at getProviderConfig (file:///C:/Users/pc/Downloads/btl/btl-1/data/generators/real-trace-generator.mjs:215:13)
+    at callProvider (file:///C:/Users/pc/Downloads/btl/btl-1/data/generators/real-trace-generator.mjs:259:15)
+    at worker (file:///C:/Users/pc/Downloads/btl/btl-1/data/generators/real-trace-generator.mjs:149:36)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Promise.all (index 85)
+    at async generateTraces (file:///C:/Users/pc/Downloads/btl/btl-1/data/generators/real-trace-generator.mjs:191:3)
+    at async main (file:///C:/Users/pc/Downloads/btl/btl-1/data/generators/real-trace-generator.mjs:365:60)
