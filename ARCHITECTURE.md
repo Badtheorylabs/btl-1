@@ -189,3 +189,5 @@ If the gap exists at 5x fewer tokens: **thesis confirmed, compression works.**
 If no gap: **thesis falsified, compression training is just expensive SFT.**
 
 Both results are publishable. That is the point.
+
+<!-- last deployed: 2026-06-19 -->
