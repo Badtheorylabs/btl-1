@@ -326,8 +326,8 @@ def main():
 
     pad_id = tokenizer.pad_token_id
     sft_loader = DataLoader(sft_dataset, batch_size=BATCH, shuffle=True, collate_fn=lambda b: collate_sft(b, pad_id))
-    dpo_loader = DataLoader(dpo_dataset, batch_size=BATCH, shuffle=True, collate_fn=lambda b: collate_dpo(b, pad_id))
-    contra_loader = DataLoader(contra_dataset, batch_size=BATCH, shuffle=True, collate_fn=lambda b: collate_contrastive(b, pad_id))
+    dpo_loader = DataLoader(dpo_dataset, batch_size=BATCH, shuffle=True, collate_fn=lambda b: collate_dpo(b, pad_id)) if len(dpo_dataset) > 0 else None
+    contra_loader = DataLoader(contra_dataset, batch_size=BATCH, shuffle=True, collate_fn=lambda b: collate_contrastive(b, pad_id)) if len(contra_dataset) > 0 else None
 
     model = setup_model()
     ref_model = setup_model()
@@ -343,21 +343,24 @@ def main():
     scheduler = get_cosine_schedule_with_warmup(optimizer, int(total_steps * WARMUP), total_steps)
 
     # Precompute reference log probs for DPO
-    print("Precomputing reference log probs for DPO...")
     ref_logp_cache = []
-    for i in range(len(dpo_dataset)):
-        c_ids, c_mask, r_ids, r_mask = dpo_dataset.pairs[i]
-        if len(ref_logp_cache) < 32 or i % 100 == 0:
-            pass  # progress indicator
-        with torch.no_grad():
-            c_ids_b = c_ids.unsqueeze(0).to(ref_model.device)
-            c_mask_b = c_mask.unsqueeze(0).to(ref_model.device)
-            r_ids_b = r_ids.unsqueeze(0).to(ref_model.device)
-            r_mask_b = r_mask.unsqueeze(0).to(ref_model.device)
-            rc = compute_log_probs(ref_model, c_ids_b, c_mask_b)
-            rr = compute_log_probs(ref_model, r_ids_b, r_mask_b)
-        ref_logp_cache.append((rc.item(), rr.item()))
-    print(f"  cached {len(ref_logp_cache)} DPO reference scores")
+    if len(dpo_dataset) > 0:
+        print("Precomputing reference log probs for DPO...")
+        for i in range(len(dpo_dataset)):
+            c_ids, c_mask, r_ids, r_mask = dpo_dataset.pairs[i]
+            if len(ref_logp_cache) < 32 or i % 100 == 0:
+                pass  # progress indicator
+            with torch.no_grad():
+                c_ids_b = c_ids.unsqueeze(0).to(ref_model.device)
+                c_mask_b = c_mask.unsqueeze(0).to(ref_model.device)
+                r_ids_b = r_ids.unsqueeze(0).to(ref_model.device)
+                r_mask_b = r_mask.unsqueeze(0).to(ref_model.device)
+                rc = compute_log_probs(ref_model, c_ids_b, c_mask_b)
+                rr = compute_log_probs(ref_model, r_ids_b, r_mask_b)
+            ref_logp_cache.append((rc.item(), rr.item()))
+        print(f"  cached {len(ref_logp_cache)} DPO reference scores")
+    else:
+        print("  skipping DPO precomputation (no pairs)")
 
     if DRY_RUN:
         print("DRY RUN — evaluating before training, then exiting")
@@ -389,67 +392,73 @@ def main():
                 print(f"  SFT step {step}: loss={loss.item():.4f}")
 
         # Stage 2: DPO (using cached ref logprobs)
-        print(f"\nEpoch {epoch+1}/{EPOCHS} — Stage 2: DPO")
-        model.train()
-        dpo_step = 0
-        for batch_idx, batch in enumerate(dpo_loader):
-            ref_c, ref_r = ref_logp_cache[batch_idx * BATCH:(batch_idx + 1) * BATCH] if batch_idx < len(ref_logp_cache) else (0.0, 0.0)
-            # Handle last batch being smaller
-            if batch_idx >= len(ref_logp_cache) // BATCH:
-                break
+        if dpo_loader is None:
+            print(f"\nEpoch {epoch+1}/{EPOCHS} — Stage 2: DPO (skipped, no pairs)")
+        else:
+            print(f"\nEpoch {epoch+1}/{EPOCHS} — Stage 2: DPO")
+            model.train()
+            dpo_step = 0
+            for batch_idx, batch in enumerate(dpo_loader):
+                ref_c, ref_r = ref_logp_cache[batch_idx * BATCH:(batch_idx + 1) * BATCH] if batch_idx < len(ref_logp_cache) else (0.0, 0.0)
+                # Handle last batch being smaller
+                if batch_idx >= len(ref_logp_cache) // BATCH:
+                    break
 
-            batch.chosen_ids = batch.chosen_ids.to(model.device)
-            batch.chosen_mask = batch.chosen_mask.to(model.device)
-            batch.rejected_ids = batch.rejected_ids.to(model.device)
-            batch.rejected_mask = batch.rejected_mask.to(model.device)
+                batch.chosen_ids = batch.chosen_ids.to(model.device)
+                batch.chosen_mask = batch.chosen_mask.to(model.device)
+                batch.rejected_ids = batch.rejected_ids.to(model.device)
+                batch.rejected_mask = batch.rejected_mask.to(model.device)
 
-            pi_chosen = compute_log_probs(model, batch.chosen_ids, batch.chosen_mask)
-            pi_rejected = compute_log_probs(model, batch.rejected_ids, batch.rejected_mask)
+                pi_chosen = compute_log_probs(model, batch.chosen_ids, batch.chosen_mask)
+                pi_rejected = compute_log_probs(model, batch.rejected_ids, batch.rejected_mask)
 
-            ref_c_t = torch.tensor([rc for rc, _ in ref_logp_cache[batch_idx * BATCH:(batch_idx + 1) * BATCH]], device=model.device)
-            ref_r_t = torch.tensor([rr for _, rr in ref_logp_cache[batch_idx * BATCH:(batch_idx + 1) * BATCH]], device=model.device)
+                ref_c_t = torch.tensor([rc for rc, _ in ref_logp_cache[batch_idx * BATCH:(batch_idx + 1) * BATCH]], device=model.device)
+                ref_r_t = torch.tensor([rr for _, rr in ref_logp_cache[batch_idx * BATCH:(batch_idx + 1) * BATCH]], device=model.device)
 
-            loss, acc = dpo_loss(pi_chosen, pi_rejected, ref_c_t, ref_r_t, beta=PREF_BETA)
-            loss.backward()
+                loss, acc = dpo_loss(pi_chosen, pi_rejected, ref_c_t, ref_r_t, beta=PREF_BETA)
+                loss.backward()
 
-            if (dpo_step + 1) % GRAD_ACCUM == 0:
-                torch.nn.utils.clip_grad_norm_(model.parameters(), MAX_GRAD)
-                optimizer.step()
-                scheduler.step()
-                optimizer.zero_grad()
-                global_step += 1
-            dpo_step += 1
-            if dpo_step % 50 == 0:
-                print(f"  DPO step {dpo_step}: loss={loss.item():.4f} acc={acc:.3f}")
+                if (dpo_step + 1) % GRAD_ACCUM == 0:
+                    torch.nn.utils.clip_grad_norm_(model.parameters(), MAX_GRAD)
+                    optimizer.step()
+                    scheduler.step()
+                    optimizer.zero_grad()
+                    global_step += 1
+                dpo_step += 1
+                if dpo_step % 50 == 0:
+                    print(f"  DPO step {dpo_step}: loss={loss.item():.4f} acc={acc:.3f}")
 
         # Stage 3: Contrastive
-        print(f"\nEpoch {epoch+1}/{EPOCHS} — Stage 3: Contrastive")
-        model.train()
-        contra_step = 0
-        for batch in contra_loader:
-            batch.anchor_ids = batch.anchor_ids.to(model.device)
-            batch.anchor_mask = batch.anchor_mask.to(model.device)
-            batch.positive_ids = batch.positive_ids.to(model.device)
-            batch.positive_mask = batch.positive_mask.to(model.device)
-            batch.negative_ids = batch.negative_ids.to(model.device)
-            batch.negative_mask = batch.negative_mask.to(model.device)
+        if contra_loader is None:
+            print(f"\nEpoch {epoch+1}/{EPOCHS} — Stage 3: Contrastive (skipped, no triples)")
+        else:
+            print(f"\nEpoch {epoch+1}/{EPOCHS} — Stage 3: Contrastive")
+            model.train()
+            contra_step = 0
+            for batch in contra_loader:
+                batch.anchor_ids = batch.anchor_ids.to(model.device)
+                batch.anchor_mask = batch.anchor_mask.to(model.device)
+                batch.positive_ids = batch.positive_ids.to(model.device)
+                batch.positive_mask = batch.positive_mask.to(model.device)
+                batch.negative_ids = batch.negative_ids.to(model.device)
+                batch.negative_mask = batch.negative_mask.to(model.device)
 
-            anc = get_hidden(model, batch.anchor_ids, batch.anchor_mask)
-            pos = get_hidden(model, batch.positive_ids, batch.positive_mask)
-            neg = get_hidden(model, batch.negative_ids, batch.negative_mask)
+                anc = get_hidden(model, batch.anchor_ids, batch.anchor_mask)
+                pos = get_hidden(model, batch.positive_ids, batch.positive_mask)
+                neg = get_hidden(model, batch.negative_ids, batch.negative_mask)
 
-            loss, dp, dn = contrastive_loss(anc, pos, neg, margin=CONTRASTIVE_MARGIN)
-            loss.backward()
+                loss, dp, dn = contrastive_loss(anc, pos, neg, margin=CONTRASTIVE_MARGIN)
+                loss.backward()
 
-            if (contra_step + 1) % GRAD_ACCUM == 0:
-                torch.nn.utils.clip_grad_norm_(model.parameters(), MAX_GRAD)
-                optimizer.step()
-                scheduler.step()
-                optimizer.zero_grad()
-                global_step += 1
-            contra_step += 1
-            if contra_step % 25 == 0:
-                print(f"  Contrastive step {contra_step}: loss={loss.item():.4f} d_pos={dp:.4f} d_neg={dn:.4f}")
+                if (contra_step + 1) % GRAD_ACCUM == 0:
+                    torch.nn.utils.clip_grad_norm_(model.parameters(), MAX_GRAD)
+                    optimizer.step()
+                    scheduler.step()
+                    optimizer.zero_grad()
+                    global_step += 1
+                contra_step += 1
+                if contra_step % 25 == 0:
+                    print(f"  Contrastive step {contra_step}: loss={loss.item():.4f} d_pos={dp:.4f} d_neg={dn:.4f}")
 
         # Eval after each epoch
         crr, details = eval_crr(model, eval_rows, tokenizer)
